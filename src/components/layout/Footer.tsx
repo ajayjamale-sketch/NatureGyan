@@ -20,15 +20,15 @@ const footerLinks = {
   Company: [
     { label: 'About Us', href: '/about' },
     { label: 'Contact', href: '/contact' },
-    { label: 'Careers', href: '/about' },
-    { label: 'Press', href: '/about' },
-    { label: 'Partners', href: '/about' },
+    { label: 'Careers', href: '/careers' },
+    { label: 'Press', href: '/press' },
+    { label: 'Partners', href: '/partners' },
   ],
   Legal: [
     { label: 'Privacy Policy', href: '/privacy' },
     { label: 'Terms of Service', href: '/terms' },
-    { label: 'Cookie Policy', href: '/privacy' },
-    { label: 'Accessibility', href: '/about' },
+    { label: 'Cookie Policy', href: '/cookies' },
+    { label: 'Accessibility', href: '/accessibility' },
   ],
 };
 
@@ -114,7 +114,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-6">
           <p className="text-xs text-white/40">
-            © 2026 NatureGyan. All rights reserved. Made with 🌿 for the planet.
+            © 2026 NatureGyan. All rights reserved. Made with care for the planet.
           </p>
           <p className="text-xs text-white/40">
             Empowering 2.4M+ learners across 180+ countries

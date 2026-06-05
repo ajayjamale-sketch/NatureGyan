@@ -6,7 +6,8 @@ import {
   Megaphone, Shield, Activity, Star, GraduationCap, FlaskConical,
   Play, TrendingUp, CheckCircle, ArrowRight, Sparkles, Clock, MapPin,
   Heart, Share2, Plus, Binoculars, X, Filter, SlidersHorizontal, ArrowUpDown,
-  Download, Eye, AlertTriangle, XCircle, Trash2, Send, MessageSquare, Check, Sparkle
+  Download, Eye, AlertTriangle, XCircle, Trash2, Send, MessageSquare, Check, Sparkle,
+  PawPrint, Bird, Turtle
 } from 'lucide-react';
 import DashboardSidebar from '@/components/layout/DashboardSidebar';
 import { Button } from '@/components/ui/button';
@@ -432,24 +433,29 @@ function BiodiversityPage() {
       {/* Category Tabs */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
         {[
-          { label: 'Mammals', count: 'Mammal Species', icon: '🦁', active: selectedCategory === 'Mammals' },
-          { label: 'Birds', count: 'Bird Species', icon: '🦅', active: selectedCategory === 'Birds' },
-          { label: 'Plants', count: 'Flora database', icon: '🌿', active: selectedCategory === 'Plants' },
-          { label: 'Reptiles', count: 'Cold blooded', icon: '🐊', active: selectedCategory === 'Reptiles' }
-        ].map(c => (
-          <button 
-            key={c.label} 
-            onClick={() => setSelectedCategory(c.active ? 'All' : c.label)} 
-            className={cn(
-              "bg-card border rounded-xl p-4 text-center hover:border-primary/40 hover:shadow-md transition-all", 
-              c.active ? "border-primary ring-1 ring-primary" : "border-border"
-            )}
-          >
-            <div className="text-3xl mb-2">{c.icon}</div>
-            <div className="font-bold text-foreground">{c.label}</div>
-            <div className="text-xs text-muted-foreground">{c.count}</div>
-          </button>
-        ))}
+          { label: 'Mammals', count: 'Mammal Species', icon: PawPrint, active: selectedCategory === 'Mammals' },
+          { label: 'Birds', count: 'Bird Species', icon: Bird, active: selectedCategory === 'Birds' },
+          { label: 'Plants', count: 'Flora database', icon: Leaf, active: selectedCategory === 'Plants' },
+          { label: 'Reptiles', count: 'Cold blooded', icon: Turtle, active: selectedCategory === 'Reptiles' }
+        ].map(c => {
+          const Icon = c.icon;
+          return (
+            <button 
+              key={c.label} 
+              onClick={() => setSelectedCategory(c.active ? 'All' : c.label)} 
+              className={cn(
+                "bg-card border rounded-xl p-4 flex flex-col items-center justify-center text-center hover:border-primary/40 hover:shadow-md transition-all", 
+                c.active ? "border-primary ring-1 ring-primary" : "border-border"
+              )}
+            >
+              <div className="mb-2 p-2 bg-primary/10 rounded-lg text-primary">
+                <Icon className="w-6 h-6" />
+              </div>
+              <div className="font-bold text-foreground">{c.label}</div>
+              <div className="text-xs text-muted-foreground">{c.count}</div>
+            </button>
+          );
+        })}
       </div>
 
       {/* Search & Filters */}
