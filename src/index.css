@@ -1,0 +1,292 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 60 9% 98%;
+    --foreground: 150 25% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 150 25% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 25% 8%;
+
+    --primary: 142 76% 29%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 26 84% 30%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 150 10% 92%;
+    --muted-foreground: 150 12% 40%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 150 15% 85%;
+    --input: 150 15% 85%;
+    --ring: 142 76% 29%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 150 20% 97%;
+    --sidebar-foreground: 150 25% 12%;
+    --sidebar-primary: 142 76% 29%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 150 15% 91%;
+    --sidebar-accent-foreground: 142 76% 29%;
+    --sidebar-border: 150 15% 85%;
+    --sidebar-ring: 142 76% 29%;
+  }
+
+  .dark {
+    --background: 150 20% 6%;
+    --foreground: 150 8% 94%;
+
+    --card: 150 18% 9%;
+    --card-foreground: 150 8% 94%;
+
+    --popover: 150 18% 9%;
+    --popover-foreground: 150 8% 94%;
+
+    --primary: 142 60% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 26 70% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 150 15% 15%;
+    --muted-foreground: 150 8% 58%;
+
+    --accent: 199 80% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 150 15% 20%;
+    --input: 150 15% 20%;
+    --ring: 142 60% 42%;
+
+    --sidebar-background: 150 20% 7%;
+    --sidebar-foreground: 150 8% 88%;
+    --sidebar-primary: 142 60% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 150 15% 13%;
+    --sidebar-accent-foreground: 142 60% 55%;
+    --sidebar-border: 150 15% 17%;
+    --sidebar-ring: 142 60% 42%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: hsl(var(--foreground));
+  }
+
+  p, span, div, li, td, th, label {
+    color: inherit;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Ensure inputs are visible in dark mode */
+  input, textarea, select {
+    @apply bg-background text-foreground border-border;
+  }
+
+  input::placeholder, textarea::placeholder {
+    @apply text-muted-foreground;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(142, 76%, 29%) 0%, hsl(160, 70%, 25%) 100%);
+  }
+
+  .gradient-hero {
+    background: linear-gradient(135deg, hsl(142, 76%, 15%) 0%, hsl(160, 70%, 20%) 50%, hsl(199, 89%, 25%) 100%);
+  }
+
+  .gradient-card {
+    background: linear-gradient(145deg, hsl(142, 76%, 29%) 0%, hsl(160, 70%, 35%) 100%);
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(142, 76%, 29%) 0%, hsl(199, 89%, 48%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nature-pattern {
+    background-image: radial-gradient(circle at 20% 50%, hsla(142, 76%, 29%, 0.05) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, hsla(199, 89%, 48%, 0.05) 0%, transparent 50%);
+  }
+
+  .leaf-shadow {
+    box-shadow: 0 4px 24px -4px hsla(142, 76%, 29%, 0.15), 0 2px 8px -2px hsla(142, 76%, 29%, 0.1);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -8px hsla(142, 76%, 29%, 0.2);
+  }
+
+  /* Sidebar variables */
+  .bg-sidebar {
+    background-color: hsl(var(--sidebar-background));
+  }
+
+  .text-sidebar-foreground {
+    color: hsl(var(--sidebar-foreground));
+  }
+
+  .border-sidebar-border {
+    border-color: hsl(var(--sidebar-border));
+  }
+
+  .bg-sidebar-accent {
+    background-color: hsl(var(--sidebar-accent));
+  }
+
+  .text-sidebar-accent-foreground {
+    color: hsl(var(--sidebar-accent-foreground));
+  }
+
+  .hover\:bg-sidebar-accent:hover {
+    background-color: hsl(var(--sidebar-accent));
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 hsla(142, 76%, 29%, 0.4); }
+  50% { box-shadow: 0 0 0 8px hsla(142, 76%, 29%, 0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-pulse-green {
+  animation: pulse-green 2s infinite;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* Dark mode card and content visibility fixes */
+.dark .bg-card {
+  background-color: hsl(var(--card));
+}
+
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: hsl(var(--foreground));
+}
+
+.dark p {
+  color: hsl(var(--foreground) / 0.85);
+}
+
+/* Force recharts text visibility in dark mode */
+.dark .recharts-text {
+  fill: hsl(var(--muted-foreground));
+}
+
+.dark .recharts-cartesian-axis-tick text {
+  fill: hsl(var(--muted-foreground));
+}
+
+/* Table in dark mode */
+.dark table {
+  color: hsl(var(--foreground));
+}
+
+/* Dropdown menu dark mode */
+.dark [data-radix-popper-content-wrapper] {
+  color-scheme: dark;
+}
