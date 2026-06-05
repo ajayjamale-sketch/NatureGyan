@@ -6,6 +6,8 @@ import ScrollToTop from '@/components/layout/ScrollToTop';
 import { Leaf, Target, Heart, Globe, Users, Award, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { RegistrationModal } from '@/components/ui/registration-modal';
 
 const team = [
   { name: 'Dr. Priya Sharma', role: 'Founder & CEO', expertise: 'Environmental Science, Wildlife Biology', image: 'https://images.unsplash.com/photo-1494790108755-2616b612b5e5?w=300&auto=format&fit=crop&q=80' },
@@ -28,6 +30,8 @@ const milestones = [
 export default function About() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const [joinModalOpen, setJoinModalOpen] = useState(false);
+  
   useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
 
   return (
@@ -154,13 +158,14 @@ export default function About() {
             <h2 className="text-3xl font-bold text-foreground mb-4">Join us in protecting our planet</h2>
             <p className="text-muted-foreground mb-8">Whether you're a learner, educator, researcher, or organization — there's a place for you at NatureGyan.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="gradient-primary text-white px-8" onClick={() => navigate('/register')}>
-                Start Learning Free <ArrowRight className="w-4 h-4 ml-2" />
+              <Button className="gradient-primary text-white px-8" onClick={() => setJoinModalOpen(true)}>
+                Join the Community <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
               <Button variant="outline" onClick={() => navigate('/contact')}>Partner With Us</Button>
             </div>
           </div>
         </section>
+        <RegistrationModal isOpen={joinModalOpen} onClose={() => setJoinModalOpen(false)} type="community" />
       </main>
       <Footer />
       <ScrollToTop />

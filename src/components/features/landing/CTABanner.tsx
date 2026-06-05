@@ -1,9 +1,12 @@
 import { ArrowRight, Leaf, Users, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { RegistrationModal } from '@/components/ui/registration-modal';
 
 export default function CTABanner() {
   const navigate = useNavigate();
+  const [joinModalOpen, setJoinModalOpen] = useState(false);
 
   return (
     <section className="py-24 bg-muted/20 relative overflow-hidden">
@@ -37,9 +40,9 @@ export default function CTABanner() {
                 <Button
                   size="lg"
                   className="bg-white text-primary hover:bg-white/90 font-semibold shadow-lg group"
-                  onClick={() => navigate('/register')}
+                  onClick={() => setJoinModalOpen(true)}
                 >
-                  Get Started Free
+                  Join the Community
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <Button
@@ -71,6 +74,7 @@ export default function CTABanner() {
           </div>
         </div>
       </div>
+      <RegistrationModal isOpen={joinModalOpen} onClose={() => setJoinModalOpen(false)} type="community" />
     </section>
   );
 }

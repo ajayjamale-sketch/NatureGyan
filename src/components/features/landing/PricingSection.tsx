@@ -4,12 +4,27 @@ import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { PRICING_PLANS } from '@/constants';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/hooks/useAuth';
+import { PaymentModal } from './PaymentModal';
 
 const planIcons = [Leaf, Zap, Building2];
 
 export default function PricingSection() {
   const [yearly, setYearly] = useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+  
+  const [paymentModalOpen, setPaymentModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<{name: string, price: number} | null>(null);
+
+  const handlePlanClick = (planName: string, price: number) => {
+    if (isAuthenticated) {
+      setSelectedPlan({ name: planName, price });
+      setPaymentModalOpen(true);
+    } else {
+      navigate('/register');
+    }
+  };
 
   return (
     <section className="py-24 bg-muted/30">
@@ -102,7 +117,7 @@ export default function PricingSection() {
 
                 <Button
                   className={cn('w-full font-semibold transition-all', plan.highlighted ? 'bg-white text-primary hover:bg-white/90' : 'gradient-primary text-white hover:opacity-90')}
-                  onClick={() => navigate('/register')}
+                  onClick={() => handlePlanClick(plan.name, price)}
                 >
                   {plan.cta}
                 </Button>
@@ -120,6 +135,16 @@ export default function PricingSection() {
           </Button>
         </div>
       </div>
+      
+      {selectedPlan && (
+        <PaymentModal
+          isOpen={paymentModalOpen}
+          onClose={() => setPaymentModalOpen(false)}
+          planName={selectedPlan.name}
+          price={selectedPlan.price}
+          yearly={yearly}
+        />
+      )}
     </section>
   );
 }

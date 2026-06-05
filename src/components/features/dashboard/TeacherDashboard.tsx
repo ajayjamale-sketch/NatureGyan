@@ -57,11 +57,15 @@ export default function TeacherDashboard() {
   const [studentsModalOpen, setStudentsModalOpen] = useState(false);
   const [coursesModalOpen, setCoursesModalOpen] = useState(false);
 
-  // Form states
+  // Form states for Courses
+  const [editingCourseId, setEditingCourseId] = useState<string | null>(null);
   const [newCourseTitle, setNewCourseTitle] = useState('');
   const [newCourseCategory, setNewCourseCategory] = useState('Biodiversity');
   const [newCourseLevel, setNewCourseLevel] = useState('beginner');
   const [newCourseDuration, setNewCourseDuration] = useState('6 weeks');
+  
+  // Form states for Sessions
+  const [editingSessionId, setEditingSessionId] = useState<string | null>(null);
   
   const [newSessionName, setNewSessionName] = useState('');
   const [newSessionDate, setNewSessionDate] = useState('');
@@ -88,53 +92,128 @@ export default function TeacherDashboard() {
     e.preventDefault();
     if (!newCourseTitle.trim()) return;
 
-    const newCourse = {
-      id: `c_${Date.now()}`,
-      title: newCourseTitle,
-      description: `Course on ${newCourseTitle} curated by ${user.name}.`,
-      category: newCourseCategory,
-      level: newCourseLevel as any,
-      duration: newCourseDuration,
-      enrolled: 1,
-      rating: 5.0,
-      instructor: user.name,
-      image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600'
-    };
+    let updatedCourses = [...state.courses];
 
-    const updatedCourses = [...state.courses, newCourse];
-    const newAction = {
-      id: `f_course_${Date.now()}`,
-      type: 'Course Review',
-      item: `${newCourseTitle} by ${user.name}`,
-      time: 'Just now',
-      severity: 'normal',
-      details: 'New educator course draft submitted for validation.'
-    };
-    saveMockState({ ...state, courses: updatedCourses, flaggedContent: [newAction, ...state.flaggedContent] });
+    if (editingCourseId) {
+      // Edit existing course
+      updatedCourses = updatedCourses.map(c => {
+        if (c.id === editingCourseId) {
+          return {
+            ...c,
+            title: newCourseTitle,
+            category: newCourseCategory,
+            level: newCourseLevel as any,
+            duration: newCourseDuration
+          };
+        }
+        return c;
+      });
+      toast.success('Course updated successfully!');
+    } else {
+      // Create new course
+      const newCourse = {
+        id: `c_${Date.now()}`,
+        title: newCourseTitle,
+        description: `Course on ${newCourseTitle} curated by ${user.name}.`,
+        category: newCourseCategory,
+        level: newCourseLevel as any,
+        duration: newCourseDuration,
+        enrolled: 1,
+        rating: 5.0,
+        instructor: user.name,
+        image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600'
+      };
+
+      updatedCourses = [...updatedCourses, newCourse];
+      const newAction = {
+        id: `f_course_${Date.now()}`,
+        type: 'Course Review',
+        item: `${newCourseTitle} by ${user.name}`,
+        time: 'Just now',
+        severity: 'normal',
+        details: 'New educator course draft submitted for validation.'
+      };
+      saveMockState({ ...state, courses: updatedCourses, flaggedContent: [newAction, ...state.flaggedContent] });
+      toast.success('Course created and queued for administration review!');
+    }
+    
+    saveMockState({ ...state, courses: updatedCourses });
     setState({ ...state, courses: updatedCourses });
     setNewCourseTitle('');
+    setEditingCourseId(null);
     setCreateCourseModal(false);
-    toast.success('Course created and queued for administration review!');
+  };
+
+  const openEditCourse = (course: any) => {
+    setEditingCourseId(course.id);
+    setNewCourseTitle(course.title);
+    setNewCourseCategory(course.category || 'Biodiversity');
+    setNewCourseLevel(course.level || 'beginner');
+    setNewCourseDuration(course.duration || '6 weeks');
+    setCreateCourseModal(true);
+  };
+
+  const openCreateCourse = () => {
+    setEditingCourseId(null);
+    setNewCourseTitle('');
+    setNewCourseCategory('Biodiversity');
+    setNewCourseLevel('beginner');
+    setNewCourseDuration('6 weeks');
+    setCreateCourseModal(true);
   };
 
   const handleScheduleSessionSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newSessionName.trim() || !newSessionDate.trim()) return;
 
-    const newSession = {
-      id: `ses_${Date.now()}`,
-      name: newSessionName,
-      date: newSessionDate,
-      students: 0
-    };
+    let updatedSessions = [...state.sessions];
 
-    const updatedSessions = [...state.sessions, newSession];
+    if (editingSessionId) {
+      updatedSessions = updatedSessions.map(s => {
+        if (s.id === editingSessionId) {
+          return { ...s, name: newSessionName, date: newSessionDate };
+        }
+        return s;
+      });
+      toast.success('Session updated successfully!');
+    } else {
+      const newSession = {
+        id: `ses_${Date.now()}`,
+        name: newSessionName,
+        date: newSessionDate,
+        students: 0
+      };
+      updatedSessions = [...updatedSessions, newSession];
+      toast.success('Live session scheduled successfully!');
+    }
+
     saveMockState({ ...state, sessions: updatedSessions });
     setState({ ...state, sessions: updatedSessions });
     setNewSessionName('');
     setNewSessionDate('');
+    setEditingSessionId(null);
     setScheduleSessionModal(false);
-    toast.success('Live session scheduled successfully!');
+  };
+
+  const openEditSession = (session: any) => {
+    setEditingSessionId(session.id);
+    setNewSessionName(session.name);
+    setNewSessionDate(session.date);
+    setScheduleSessionModal(true);
+  };
+
+  const openCreateSession = () => {
+    setEditingSessionId(null);
+    setNewSessionName('');
+    setNewSessionDate('');
+    setScheduleSessionModal(true);
+  };
+
+  const handleDeleteSession = (id: string, name: string) => {
+    const updated = state.sessions.filter(s => s.id !== id);
+    saveMockState({ ...state, sessions: updated });
+    setState({ ...state, sessions: updated });
+    toast.success(`Session "${name}" has been cancelled.`);
   };
 
   const handleSendReminder = (student: any) => {
@@ -169,7 +248,7 @@ export default function TeacherDashboard() {
           <Button variant="outline" className="h-9 text-sm border-border text-foreground hover:bg-muted font-medium" onClick={() => setStudentsModalOpen(true)}>
             <Users className="w-4 h-4 mr-2" /> View Student Roster
           </Button>
-          <Button className="gradient-primary text-white h-9 text-sm font-semibold" onClick={() => setCreateCourseModal(true)}>
+          <Button className="gradient-primary text-white h-9 text-sm font-semibold" onClick={() => openCreateCourse()}>
             <Plus className="w-4 h-4 mr-2" /> Create Course
           </Button>
         </div>
@@ -267,6 +346,9 @@ export default function TeacherDashboard() {
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <span className="text-sm font-semibold text-foreground leading-tight">{c.title}</span>
                     <div className="flex gap-1.5">
+                      <button onClick={() => openEditCourse(c)} className="p-1 hover:bg-background rounded text-muted-foreground hover:text-primary transition-colors">
+                        <Edit className="w-3.5 h-3.5" />
+                      </button>
                       <button onClick={() => handleDeleteCourse(c.id, c.title)} className="p-1 hover:bg-background rounded text-muted-foreground hover:text-destructive transition-colors">
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
@@ -279,7 +361,7 @@ export default function TeacherDashboard() {
                 </div>
               ))}
             </div>
-            <Button className="w-full mt-4 gradient-primary text-white text-sm h-9 font-semibold" onClick={() => setCreateCourseModal(true)}>
+            <Button className="w-full mt-4 gradient-primary text-white text-sm h-9 font-semibold" onClick={() => openCreateCourse()}>
               <Plus className="w-4 h-4 mr-2" /> Create New Course
             </Button>
           </div>
@@ -291,16 +373,29 @@ export default function TeacherDashboard() {
             </h3>
             <div className="space-y-3">
               {state.sessions.map(session => (
-                <div key={session.id} className="p-3 rounded-lg bg-muted/50 border border-border hover:border-primary/30 transition-colors cursor-pointer" onClick={() => toast.success(`Opening streaming portal for: ${session.name}`)}>
-                  <div className="text-sm font-semibold text-foreground leading-tight">{session.name}</div>
-                  <div className="flex items-center justify-between mt-2">
-                    <span className="text-xs text-muted-foreground">{session.date}</span>
-                    <span className="text-xs text-primary font-semibold">{session.students} registered</span>
+                <div key={session.id} className="p-3 rounded-lg bg-muted/50 border border-border hover:border-primary/30 transition-colors">
+                  <div className="flex justify-between items-start mb-2">
+                    <div className="text-sm font-semibold text-foreground leading-tight">{session.name}</div>
+                    <div className="flex gap-1.5 ml-2">
+                      <button onClick={() => openEditSession(session)} className="p-1 hover:bg-background rounded text-muted-foreground hover:text-primary transition-colors" title="Edit Session">
+                        <Edit className="w-3.5 h-3.5" />
+                      </button>
+                      <button onClick={() => handleDeleteSession(session.id, session.name)} className="p-1 hover:bg-background rounded text-muted-foreground hover:text-destructive transition-colors" title="Cancel Session">
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
                   </div>
+                  <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
+                    <span>{session.date}</span>
+                    <span className="text-primary font-semibold">{session.students} registered</span>
+                  </div>
+                  <Button size="sm" className="w-full h-7 text-xs gradient-primary text-white font-semibold" onClick={() => toast.success(`Opening streaming portal for: ${session.name}`)}>
+                    Go Live
+                  </Button>
                 </div>
               ))}
             </div>
-            <Button variant="outline" className="w-full mt-4 h-9 text-sm border-border text-foreground hover:bg-muted font-semibold" onClick={() => setScheduleSessionModal(true)}>
+            <Button variant="outline" className="w-full mt-4 h-9 text-sm border-border text-foreground hover:bg-muted font-semibold" onClick={() => openCreateSession()}>
               <Plus className="w-4 h-4 mr-2" /> Schedule Stream
             </Button>
           </div>
@@ -394,7 +489,7 @@ export default function TeacherDashboard() {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-card border border-border max-w-md w-full rounded-2xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-150">
             <div className="p-5 border-b border-border flex items-center justify-between bg-muted/20">
-              <h3 className="font-bold text-foreground text-lg">Publish Course Curriculum</h3>
+              <h3 className="font-bold text-foreground text-lg">{editingCourseId ? 'Edit Course Details' : 'Publish Course Curriculum'}</h3>
               <button onClick={() => setCreateCourseModal(false)} className="text-muted-foreground hover:text-foreground">
                 <X className="w-5 h-5" />
               </button>
@@ -439,7 +534,7 @@ export default function TeacherDashboard() {
               </div>
               <div className="pt-2 border-t border-border flex justify-end gap-2">
                 <Button type="button" variant="outline" className="border-border text-foreground" onClick={() => setCreateCourseModal(false)}>Cancel</Button>
-                <Button type="submit" className="gradient-primary text-white font-semibold">Publish to Review Queue</Button>
+                <Button type="submit" className="gradient-primary text-white font-semibold">{editingCourseId ? 'Save Changes' : 'Publish to Review Queue'}</Button>
               </div>
             </form>
           </div>
@@ -451,7 +546,7 @@ export default function TeacherDashboard() {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-card border border-border max-w-md w-full rounded-2xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-150">
             <div className="p-5 border-b border-border flex items-center justify-between bg-muted/20">
-              <h3 className="font-bold text-foreground text-lg">Schedule Live Q&A Stream</h3>
+              <h3 className="font-bold text-foreground text-lg">{editingSessionId ? 'Edit Session' : 'Schedule Live Q&A Stream'}</h3>
               <button onClick={() => setScheduleSessionModal(false)} className="text-muted-foreground hover:text-foreground">
                 <X className="w-5 h-5" />
               </button>
@@ -479,7 +574,7 @@ export default function TeacherDashboard() {
               </div>
               <div className="pt-2 border-t border-border flex justify-end gap-2">
                 <Button type="button" variant="outline" className="border-border text-foreground" onClick={() => setScheduleSessionModal(false)}>Cancel</Button>
-                <Button type="submit" className="gradient-primary text-white font-semibold">Schedule Session</Button>
+                <Button type="submit" className="gradient-primary text-white font-semibold">{editingSessionId ? 'Save Changes' : 'Schedule Session'}</Button>
               </div>
             </form>
           </div>

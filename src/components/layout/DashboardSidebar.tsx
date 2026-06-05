@@ -272,7 +272,7 @@ export default function DashboardSidebar({ mobileOpen, onMobileClose }: Dashboar
     <>
       {/* Desktop Sidebar */}
       <aside className={cn(
-        'hidden lg:flex flex-col bg-sidebar border-r border-sidebar-border min-h-screen sticky top-0 transition-all duration-300 flex-shrink-0',
+        'hidden lg:flex flex-col bg-sidebar border-r border-sidebar-border h-screen sticky top-0 transition-all duration-300 flex-shrink-0',
         collapsed ? 'w-16' : 'w-64'
       )}>
         {sidebarContent}

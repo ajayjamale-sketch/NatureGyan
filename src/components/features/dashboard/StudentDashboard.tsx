@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from 'sonner';
 import { getMockState, saveMockState, useMockStateListener } from '@/lib/mockState';
+import { RegistrationModal } from '@/components/ui/registration-modal';
 
 const weeklyData = [
   { day: 'Mon', hours: 1.5 }, { day: 'Tue', hours: 2.0 },
@@ -44,90 +45,7 @@ function Modal({ isOpen, onClose, title, children }: { isOpen: boolean; onClose:
   );
 }
 
-// Registration Form – works for courses, events, and community
-function RegistrationFormModal({ isOpen, onClose, type, item, onSuccess }: { isOpen: boolean; onClose: () => void; type: 'course' | 'event' | 'community'; item?: any; onSuccess: () => void }) {
-  const { user } = useAuth();
-  const [formData, setFormData] = useState({
-    name: user?.name || '',
-    email: user?.email || '',
-    agree: false,
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const getTitle = () => {
-    if (type === 'course') return 'Enroll in Course';
-    if (type === 'event') return 'Register for Event';
-    return 'Join Eco Community';
-  };
-
-  const getSuccessMessage = () => {
-    if (type === 'course') return `Successfully enrolled in ${item?.title || 'the course'}`;
-    if (type === 'event') return `Successfully registered for ${item?.name || 'the event'}`;
-    return `Welcome to the Eco Community! 🌍`;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.agree) {
-      toast.error('Please agree to the terms');
-      return;
-    }
-    setIsSubmitting(true);
-    await new Promise(r => setTimeout(r, 800));
-    setIsSubmitting(false);
-    onSuccess();
-    toast.success(getSuccessMessage());
-    onClose();
-  };
-
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} title={getTitle()}>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-foreground mb-1">Full Name</label>
-          <div className="relative">
-            <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input
-              type="text"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full pl-9 pr-3 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-              required
-            />
-          </div>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-foreground mb-1">Email Address</label>
-          <div className="relative">
-            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input
-              type="email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full pl-9 pr-3 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-              required
-            />
-          </div>
-        </div>
-        <div className="flex items-start gap-2">
-          <input
-            type="checkbox"
-            id="agree"
-            checked={formData.agree}
-            onChange={(e) => setFormData({ ...formData, agree: e.target.checked })}
-            className="mt-1"
-          />
-          <label htmlFor="agree" className="text-xs text-muted-foreground">
-            I agree to the terms of service and I'm excited to be part of this sustainable journey! 🌱
-          </label>
-        </div>
-        <Button type="submit" className="w-full gradient-primary text-white" disabled={isSubmitting}>
-          {isSubmitting ? 'Processing...' : (type === 'course' ? 'Enroll Now' : type === 'event' ? 'Register' : 'Join Community')}
-        </Button>
-      </form>
-    </Modal>
-  );
-}
 
 export default function StudentDashboard() {
   const { user } = useAuth();
@@ -609,7 +527,7 @@ export default function StudentDashboard() {
       </Modal>
 
       {/* Registration Form Modal - handles courses, events, community */}
-      <RegistrationFormModal
+      <RegistrationModal
         isOpen={showRegForm}
         onClose={() => setShowRegForm(false)}
         type={regType}

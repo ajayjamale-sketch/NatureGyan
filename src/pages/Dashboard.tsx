@@ -17,6 +17,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 import { getMockState, saveMockState, useMockStateListener } from '@/lib/mockState';
+import { RegistrationModal } from '@/components/ui/registration-modal';
 
 // Role-based main dashboards
 import StudentDashboard from '@/components/features/dashboard/StudentDashboard';
@@ -539,13 +540,21 @@ function ChallengesPage() {
   const [state, setState] = useState(getMockState());
   const [submittingProof, setSubmittingProof] = useState<string | null>(null);
 
+  const [joinModalOpen, setJoinModalOpen] = useState(false);
+  const [activeChallenge, setActiveChallenge] = useState<{id: string, title: string} | null>(null);
+
   useEffect(() => {
     return useMockStateListener(() => setState(getMockState()));
   }, []);
 
   const handleJoin = (id: string, title: string) => {
-    // Already tracked in participants, we just simulate joining
-    toast.success(`Joined Eco-Challenge: "${title}"!`, { description: "Work on the task and submit proof when done." });
+    setActiveChallenge({ id, title });
+    setJoinModalOpen(true);
+  };
+
+  const handleJoinSuccess = () => {
+    if (!activeChallenge) return;
+    toast.success(`Joined Eco-Challenge: "${activeChallenge.title}"!`, { description: "Work on the task and submit proof when done." });
   };
 
   const handleSubmitProof = async (id: string, title: string, pts: number) => {
@@ -631,6 +640,13 @@ function ChallengesPage() {
           </div>
         ))}
       </div>
+      <RegistrationModal 
+        isOpen={joinModalOpen} 
+        onClose={() => setJoinModalOpen(false)} 
+        type="community" 
+        item={activeChallenge ? { title: activeChallenge.title } : undefined} 
+        onSuccess={handleJoinSuccess} 
+      />
     </div>
   );
 }
@@ -643,20 +659,28 @@ function CommunityPage() {
   const [newPostTitle, setNewPostTitle] = useState('');
   const [newPostEmoji, setNewPostEmoji] = useState('🌱');
   const [newPostCategory, setNewPostCategory] = useState('Ecology');
+  const [joinModalOpen, setJoinModalOpen] = useState(false);
+  const [activeForum, setActiveForum] = useState<string | null>(null);
 
   useEffect(() => {
     return useMockStateListener(() => setState(getMockState()));
   }, []);
 
   const handleJoinForum = (forumName: string) => {
+    setActiveForum(forumName);
+    setJoinModalOpen(true);
+  };
+
+  const handleJoinSuccess = () => {
+    if (!activeForum) return;
     const updated = state.communityPosts.map(f => {
-      if (f.name === forumName) {
+      if (f.name === activeForum) {
         return { ...f, members: f.members + 1 };
       }
       return f;
     });
     saveMockState({ communityPosts: updated });
-    toast.success(`Joined community: ${forumName}!`);
+    toast.success(`Joined community: ${activeForum}!`);
   };
 
   const handleCreatePost = (e: React.FormEvent) => {
@@ -790,6 +814,14 @@ function CommunityPage() {
           </div>
         </div>
       )}
+
+      <RegistrationModal 
+        isOpen={joinModalOpen} 
+        onClose={() => setJoinModalOpen(false)} 
+        type="community" 
+        item={activeForum ? { title: activeForum } : undefined} 
+        onSuccess={handleJoinSuccess} 
+      />
     </div>
   );
 }
@@ -800,32 +832,45 @@ function EventsPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState('All');
 
+  const [regModalOpen, setRegModalOpen] = useState(false);
+  const [activeEvent, setActiveEvent] = useState<{id: string, name: string} | null>(null);
+
   useEffect(() => {
     return useMockStateListener(() => setState(getMockState()));
   }, []);
 
-  const handleRegister = (id: string, name: string, isRegistered: boolean) => {
+  const handleRegisterClick = (id: string, name: string, isRegistered: boolean) => {
+    if (isRegistered) {
+      // Direct cancellation
+      const updated = state.events.map(e => {
+        if (e.id === id) {
+          return { ...e, registered: false, spots: e.spots + 1 };
+        }
+        return e;
+      });
+      saveMockState({ events: updated });
+      toast.info(`Cancelled registration for ${name}`);
+    } else {
+      // Open form
+      setActiveEvent({ id, name });
+      setRegModalOpen(true);
+    }
+  };
+
+  const handleRegisterSuccess = () => {
+    if (!activeEvent) return;
     const updated = state.events.map(e => {
-      if (e.id === id) {
-        return {
-          ...e,
-          registered: !isRegistered,
-          spots: isRegistered ? e.spots + 1 : e.spots - 1
-        };
+      if (e.id === activeEvent.id) {
+        return { ...e, registered: true, spots: e.spots - 1 };
       }
       return e;
     });
-
     saveMockState({ events: updated });
 
-    if (!isRegistered) {
-      if (user) {
-        updateUser({ ecoPoints: user.ecoPoints + 40 });
-      }
-      toast.success(`Registered for ${name}!`, { description: "+40 Eco Points awarded. Tickets sent to your registered email!" });
-    } else {
-      toast.info(`Cancelled registration for ${name}`);
+    if (user) {
+      updateUser({ ecoPoints: user.ecoPoints + 40 });
     }
+    toast.success(`Registered for ${activeEvent.name}!`, { description: "+40 Eco Points awarded. Tickets sent to your registered email!" });
   };
 
   const types = ['All', 'Nature Walk', 'Cleanup', 'Conference', 'Workshop', 'Campaign', 'Eco Tour'];
@@ -887,7 +932,7 @@ function EventsPage() {
               <Button 
                 size="sm" 
                 className={cn('w-full h-8 text-xs font-semibold', e.registered ? 'bg-muted text-foreground border border-border hover:bg-muted/80' : 'gradient-primary text-white')}
-                onClick={() => handleRegister(e.id, e.name, e.registered || false)}
+                onClick={() => handleRegisterClick(e.id, e.name, e.registered || false)}
               >
                 {e.registered ? 'Cancel Registration' : 'Register Now'}
               </Button>
@@ -895,6 +940,14 @@ function EventsPage() {
           </div>
         ))}
       </div>
+
+      <RegistrationModal 
+        isOpen={regModalOpen} 
+        onClose={() => setRegModalOpen(false)} 
+        type="event" 
+        item={activeEvent ? { name: activeEvent.name } : undefined} 
+        onSuccess={handleRegisterSuccess} 
+      />
     </div>
   );
 }
