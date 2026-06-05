@@ -115,27 +115,7 @@ export default function About() {
           </div>
         </section>
 
-        {/* Team */}
-        <section className="py-16 bg-muted/20">
-          <div className="container mx-auto px-4 lg:px-6 max-w-7xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-3">Meet our team</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">Scientists, educators, technologists, and conservationists united by a shared love of nature.</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {team.map(member => (
-                <div key={member.name} className="rounded-2xl overflow-hidden bg-card border border-border card-hover">
-                  <img src={member.image} alt={member.name} className="w-full h-48 object-cover" />
-                  <div className="p-5">
-                    <h3 className="font-semibold text-card-foreground">{member.name}</h3>
-                    <p className="text-primary text-sm font-medium">{member.role}</p>
-                    <p className="text-xs text-muted-foreground mt-1">{member.expertise}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+       
 
         {/* Partners */}
         <section className="py-16 bg-background">

@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from 'sonner';
 import { getMockState, saveMockState, useMockStateListener } from '@/lib/mockState';
+import { cn } from '@/lib/utils';
 
 const userGrowth = [
   { month: 'Jan', users: 180000 }, { month: 'Feb', users: 210000 },

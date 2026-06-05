@@ -78,7 +78,7 @@ export default function Blog() {
               <>
                 {/* Featured */}
                 {filtered.slice(0, 1).map(post => (
-                  <div key={post.id} className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10 rounded-2xl overflow-hidden bg-card border border-border card-hover cursor-pointer" onClick={() => navigate('/blog')}>
+                  <div key={post.id} className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10 rounded-2xl overflow-hidden bg-card border border-border card-hover cursor-pointer" onClick={() => navigate(`/blog/${post.id}`)}>
                     <img src={post.image} alt={post.title} className="w-full h-64 lg:h-full object-cover" />
                     <div className="p-6 lg:p-8 flex flex-col justify-center">
                       <span className="text-xs bg-primary/10 text-primary rounded-full px-3 py-1 font-medium w-fit mb-4">{post.category}</span>
@@ -100,7 +100,7 @@ export default function Blog() {
                 {/* Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filtered.slice(1).map(post => (
-                    <div key={post.id} className="rounded-2xl overflow-hidden bg-card border border-border card-hover cursor-pointer" onClick={() => navigate('/blog')}>
+                    <div key={post.id} className="rounded-2xl overflow-hidden bg-card border border-border card-hover cursor-pointer" onClick={() => navigate(`/blog/${post.id}`)}>
                       <img src={post.image} alt={post.title} className="w-full h-44 object-cover" />
                       <div className="p-5">
                         <span className="text-xs bg-primary/10 text-primary rounded-full px-2 py-0.5 font-medium">{post.category}</span>
@@ -117,11 +117,6 @@ export default function Blog() {
               </>
             )}
 
-            <div className="text-center mt-12">
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white" onClick={() => navigate('/blog')}>
-                Load More Articles <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </div>
           </div>
         </section>
       </main>
