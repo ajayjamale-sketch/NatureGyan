@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   Camera, Eye, Map, Bird, Leaf, TrendingUp, Upload, Trophy,
   Globe, Star, Plus, Heart, Share2, ChevronRight, Binoculars, X
-} from 'lucide-react';
+, Bug , Medal } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -96,7 +96,7 @@ export default function EnthusiastDashboard() {
       {/* Welcome */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Nature Explorer Dashboard 🦋</h1>
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">Nature Explorer Dashboard <Bug className="w-6 h-6 text-primary" /></h1>
           <p className="text-muted-foreground mt-1 text-sm">Welcome back, {user.name.split(' ')[0]}! Log nature observations to earn Eco Points.</p>
         </div>
         <div className="flex gap-2 flex-wrap">
@@ -213,7 +213,7 @@ export default function EnthusiastDashboard() {
             <div className="grid grid-cols-3 gap-2">
               {user.badges?.slice(0, 6).map((badge, i) => (
                 <div key={i} className="aspect-square rounded-xl bg-muted flex flex-col items-center justify-center text-center p-1.5 hover:bg-primary/10 hover:scale-105 transition-all cursor-default border border-border/20" title={badge.description}>
-                  <div className="text-xl">{badge.icon || '🏅'}</div>
+                  <div className="flex items-center text-xl">{badge.icon ? <span className="text-2xl">{badge.icon}</span> : <Medal className="w-6 h-6 text-primary" />}</div>
                   <div className="text-[8px] font-bold text-foreground mt-1 truncate w-full">{badge.name}</div>
                 </div>
               ))}

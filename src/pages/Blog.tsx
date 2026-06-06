@@ -70,7 +70,7 @@ export default function Blog() {
 
             {filtered.length === 0 ? (
               <div className="text-center py-16">
-                <div className="text-4xl mb-4">🌿</div>
+                <div className="flex justify-center text-4xl mb-4"><Leaf className="w-10 h-10 text-green-500" /></div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">No articles found</h3>
                 <p className="text-muted-foreground">Try a different search term or category.</p>
               </div>

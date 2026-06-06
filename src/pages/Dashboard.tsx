@@ -8,7 +8,7 @@ import {
   Heart, Share2, Plus, Binoculars, X, Filter, SlidersHorizontal, ArrowUpDown,
   Download, Eye, AlertTriangle, XCircle, Trash2, Send, MessageSquare, Check, Sparkle,
   PawPrint, Bird, Turtle
-} from 'lucide-react';
+, Sprout , Droplet , Medal , Salad , ShoppingBag , ThumbsUp , Recycle , Cat } from 'lucide-react';
 import DashboardSidebar from '@/components/layout/DashboardSidebar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -169,7 +169,7 @@ function CoursesPage() {
                   <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mb-3">
                     <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{c.duration}</span>
                     <span className="capitalize">{c.level}</span>
-                    <span>⭐ {c.rating} ({c.enrolled?.toLocaleString()} learners)</span>
+                    <span><Star className="inline w-4 h-4 text-yellow-500 mr-1" /> {c.rating} ({c.enrolled?.toLocaleString()} learners)</span>
                   </div>
                   <div className="text-xs font-medium text-foreground mb-2">Instructor: <span className="text-muted-foreground">{c.instructor}</span></div>
                 </div>
@@ -214,7 +214,7 @@ function AIAssistantPage() {
   const [state, setState] = useState(getMockState());
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
-    { role: 'assistant', text: "Hello! I'm your AI Nature Assistant 🌿. Ask me anything about wildlife, plants, ecosystems, climate change, or conservation. You can also type 'identify [bird/plant/insect]' to simulate our computer-vision species identification, or ask for conservation tips!" },
+    { role: 'assistant', text: "Hello! I'm your AI Nature Assistant.  Ask me anything about wildlife, plants, ecosystems, climate change, or conservation. You can also type 'identify [bird/plant/insect]' to simulate our computer-vision species identification, or ask for conservation tips!" },
   ]);
   const [loading, setLoading] = useState(false);
 
@@ -262,7 +262,7 @@ function AIAssistantPage() {
         details = 'Aquatic perennial plant with large pink flowers, sacred in Hindu/Buddhist traditions.';
       }
 
-      reply = `📸 [AI Image Recognition Tool Success]\n\nSpecies Identified: ${speciesName}\nScientific Name: ${scientific}\nCategory: ${category}\nConfidence Score: ${confidence}\n\nHabitat/Details: ${details}\n\nObservation saved to your "My Sightings" database. You gained +30 Eco Points!`;
+      reply = `[AI Image Recognition Tool Success]\n\nSpecies Identified: ${speciesName}\nScientific Name: ${scientific}\nCategory: ${category}\nConfidence Score: ${confidence}\n\nHabitat/Details: ${details}\n\nObservation saved to your "My Sightings" database. You gained +30 Eco Points!`;
 
       // Save to sightings
       const newSighting = {
@@ -293,7 +293,7 @@ function AIAssistantPage() {
     } else if (norm.includes('climate')) {
       reply = 'Climate change refers to long-term shifts in global temperatures and weather patterns. Human activities since the 1800s — primarily burning fossil fuels — have been the main driver. This releases greenhouse gases (CO₂, methane, nitrous oxide) that trap heat in the atmosphere. Effects include rising temperatures, melting ice caps, rising sea levels, more extreme weather events, and biodiversity loss.';
     } else {
-      reply = `Interesting query about "${text}"! In environmental science, this connects to ecological dynamics. To learn more, check out our Biodiversity Fundamentals or Forest Ecology courses in the Academy tab. Every observation and question helps us build a greener planet. 🌍`;
+      reply = `Interesting query about "${text}"! In environmental science, this connects to ecological dynamics. To learn more, check out our Biodiversity Fundamentals or Forest Ecology courses in the Academy tab. Every observation and question helps us build a greener planet.`;
     }
 
     setMessages(prev => [...prev, { role: 'assistant', text: reply }]);
@@ -579,7 +579,7 @@ function ChallengesPage() {
         ecoPoints: user.ecoPoints + pts,
         badges: [
           ...user.badges,
-          { id: `badge_${Date.now()}`, name: `${title} Champion`, icon: '🏅', description: `Successfully completed: ${title}`, earnedAt: new Date().toISOString().split('T')[0] }
+          { id: `badge_${Date.now()}`, name: `${title} Champion`, icon: <Medal className="w-5 h-5 text-yellow-500" />, description: `Successfully completed: ${title}`, earnedAt: new Date().toISOString().split('T')[0] }
         ]
       });
     }
@@ -605,7 +605,6 @@ function ChallengesPage() {
           <div key={c.id} className={cn('bg-card border rounded-xl p-5 hover:shadow-md transition-all flex flex-col justify-between', c.completed ? 'border-green-200 dark:border-green-800 bg-green-50/20 dark:bg-green-950/10' : 'border-border hover:border-primary/30')}>
             <div>
               <div className="flex items-start justify-between mb-3">
-                <span className="text-3xl">{c.emoji}</span>
                 {c.completed ? (
                   <span className="flex items-center gap-1 text-xs font-semibold text-green-600 bg-green-100 dark:bg-green-900/30 rounded-full px-2.5 py-1">
                     <CheckCircle className="w-3 h-3" /> Completed
@@ -663,7 +662,7 @@ function CommunityPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [newPostModal, setNewPostModal] = useState(false);
   const [newPostTitle, setNewPostTitle] = useState('');
-  const [newPostEmoji, setNewPostEmoji] = useState('🌱');
+  const [newPostEmoji, setNewPostEmoji] = useState(<Sprout className="w-5 h-5 text-green-500" /> as React.ReactNode);
   const [newPostCategory, setNewPostCategory] = useState('Ecology');
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [activeForum, setActiveForum] = useState<string | null>(null);
@@ -740,7 +739,6 @@ function CommunityPage() {
         {filteredForums.map(f => (
           <div key={f.id} className="bg-card border border-border rounded-xl p-5 hover:border-primary/30 hover:shadow-md transition-all flex flex-col justify-between group">
             <div className="flex items-start gap-3 mb-3">
-              <span className="text-3xl bg-muted rounded-xl p-2.5">{f.emoji}</span>
               <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-base truncate">{f.name}</h3>
                 <div className="flex items-center gap-3 text-xs text-muted-foreground mt-0.5">
@@ -780,22 +778,7 @@ function CommunityPage() {
                   required
                 />
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-xs font-semibold text-foreground block mb-1">Topic Icon (Emoji)</label>
-                  <select 
-                    value={newPostEmoji} 
-                    onChange={e => setNewPostEmoji(e.target.value)}
-                    className="w-full bg-background border border-border text-foreground text-sm rounded-lg px-3 py-2 outline-none"
-                  >
-                    <option value="🌱">🌱 Sprout</option>
-                    <option value="🦅">🦅 Eagle</option>
-                    <option value="🌲">🌲 Pine Tree</option>
-                    <option value="🌊">🌊 Wave</option>
-                    <option value="🐯">🐯 Tiger</option>
-                    <option value="🔬">🔬 Microscope</option>
-                  </select>
-                </div>
+              <div className="grid grid-cols-1 gap-4">
                 <div>
                   <label className="text-xs font-semibold text-foreground block mb-1">Category</label>
                   <select 
@@ -975,10 +958,10 @@ function AnalyticsPage() {
       
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {[
-          { label: 'Completed Courses', value: user.coursesCompleted || 0, icon: '📚', change: 'Updated live' },
-          { label: 'Your Eco Points', value: user.ecoPoints.toLocaleString(), icon: '🌿', change: 'Rank #42' },
+          { label: 'Completed Courses', value: user.coursesCompleted || 0, icon: <BookOpen className="w-5 h-5" />, change: 'Updated live' },
+          { label: 'Your Eco Points', value: user.ecoPoints.toLocaleString(), icon: <Leaf className="w-5 h-5" />, change: 'Rank #42' },
           { label: 'Achievements', value: user.badges?.length || 0, icon: '🏅', change: 'Level 3 Naturalist' },
-          { label: 'Active Sightings', value: state.sightings.length, icon: '📸', change: 'In Citizen database' },
+          { label: 'Active Sightings', value: state.sightings.length, icon: <Camera className="w-5 h-5" />, change: 'In Citizen database' },
         ].map(s => (
           <div key={s.label} className="bg-card border border-border rounded-xl p-4 shadow-sm">
             <div className="text-2xl mb-2">{s.icon}</div>
@@ -993,10 +976,10 @@ function AnalyticsPage() {
         <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
           <h3 className="font-semibold text-foreground mb-4 border-b border-border/40 pb-2">Your Environmental Impact Metrics</h3>
           {[
-            { emoji: '🌳', label: 'Reforestation contribution', value: '12 Trees' },
-            { emoji: '♻️', label: 'Travel CO₂ emissions offset', value: '340 kg' },
-            { emoji: '💧', label: 'Simulated Water conserved', value: '1,200 Litres' },
-            { emoji: '🦁', label: 'Species identified in wilderness', value: `${state.sightings.length} flora/fauna` },
+            { emoji: <TreePine className="w-5 h-5 text-green-600" />, label: 'Reforestation contribution', value: '12 Trees' },
+            { emoji: <Recycle className="w-5 h-5 text-green-500" />, label: 'Travel CO₂ emissions offset', value: '340 kg' },
+            { emoji: <Droplet className="w-5 h-5 text-blue-600" />, label: 'Simulated Water conserved', value: '1,200 Litres' },
+            { emoji: <Cat className="w-5 h-5 text-yellow-600" />, label: 'Species identified in wilderness', value: `${state.sightings.length} flora/fauna` },
           ].map(({ emoji, label, value }) => (
             <div key={label} className="flex items-center justify-between py-2.5 border-b border-border/50 last:border-0">
               <div className="flex items-center gap-2"><span>{emoji}</span><span className="text-sm text-muted-foreground">{label}</span></div>
@@ -1010,7 +993,7 @@ function AnalyticsPage() {
           <div className="grid grid-cols-2 gap-3 max-h-[250px] overflow-y-auto pr-1">
             {user.badges?.map((b, idx) => (
               <div key={idx} className="bg-muted/50 rounded-xl p-3 text-center border border-border/30 hover:bg-muted transition-colors cursor-default" title={b.description}>
-                <div className="text-2xl mb-1">{b.icon || '🏅'}</div>
+                <div className="flex justify-center text-2xl mb-1">{b.icon || <Medal className="w-8 h-8 text-yellow-500" />}</div>
                 <div className="text-xs font-bold text-foreground truncate">{b.name}</div>
                 <div className="text-[10px] text-muted-foreground mt-0.5 line-clamp-1">{b.description}</div>
               </div>
@@ -1225,10 +1208,10 @@ function SustainabilityPage() {
   const [activeGuide, setActiveGuide] = useState<any | null>(null);
 
   const guides = [
-    { title: 'Zero Waste Kitchen', desc: 'Reduce food waste by 80% with these practical tips. Composting organic materials and recycling glass/plastics properly.', time: '5 min read', emoji: '🥗', content: 'Step 1: Auditing your trash. Figure out what food items spoil fastest and buy them in smaller quantities.\nStep 2: Composting. Keep a bin for food peels, eggshells, and coffee grounds.\nStep 3: Preserve creatively. Learn to pickle vegetables, freeze surplus herbs in olive oil, and reuse vegetable scraps to make stocks.' },
-    { title: 'Home Solar Guide', desc: 'Calculate your solar potential and save on electricity. Rooftop panel sizes, inverters, and battery storage.', time: '8 min read', emoji: '☀️', content: 'Step 1: Check your roof area and sun exposure. 1kW solar setup needs roughly 100 sq ft.\nStep 2: Understand your energy consumption bills. Match your average daily units to the panel array capacity.\nStep 3: Off-grid vs Net Metering. Choose net metering to feed excess solar back into the utility grid.' },
-    { title: 'Ethical Shopping', desc: 'How to identify and support sustainable brands. Checking fairtrade certification and organic labels.', time: '6 min read', emoji: '🛍️', content: 'Step 1: Look for certifications like Global Organic Textile Standard (GOTS) and Fair Trade.\nStep 2: Avoid fast fashion. Invest in high-durability, repairable clothing.\nStep 3: Support zero-waste packaging, local farmers, and biodegradable container options.' },
-    { title: 'Water-Wise Garden', desc: 'Grow food at home using just 30% of normal water. Drip irrigation, mulching, and drought-resistant native plant choices.', time: '7 min read', emoji: '💧', content: 'Step 1: Mulching. Add coconut coir, woodchips or organic straw to retain moisture in potting soils.\nStep 2: Rainwater harvesting. Install simple drums connected to terrace downspouts.\nStep 3: Drip nozzles. Automate root-level watering in early mornings to minimize evaporative loss.' },
+    { title: 'Zero Waste Kitchen', desc: 'Reduce food waste by 80% with these practical tips. Composting organic materials and recycling glass/plastics properly.', time: '5 min read', emoji: <Salad className="w-5 h-5" />, content: 'Step 1: Auditing your trash. Figure out what food items spoil fastest and buy them in smaller quantities.\nStep 2: Composting. Keep a bin for food peels, eggshells, and coffee grounds.\nStep 3: Preserve creatively. Learn to pickle vegetables, freeze surplus herbs in olive oil, and reuse vegetable scraps to make stocks.' },
+    { title: 'Home Solar Guide', desc: 'Calculate your solar potential and save on electricity. Rooftop panel sizes, inverters, and battery storage.', time: '8 min read', emoji: <Sun className="w-5 h-5 text-yellow-500" />, content: 'Step 1: Check your roof area and sun exposure. 1kW solar setup needs roughly 100 sq ft.\nStep 2: Understand your energy consumption bills. Match your average daily units to the panel array capacity.\nStep 3: Off-grid vs Net Metering. Choose net metering to feed excess solar back into the utility grid.' },
+    { title: 'Ethical Shopping', desc: 'How to identify and support sustainable brands. Checking fairtrade certification and organic labels.', time: '6 min read', emoji: <ShoppingBag className="w-5 h-5" />, content: 'Step 1: Look for certifications like Global Organic Textile Standard (GOTS) and Fair Trade.\nStep 2: Avoid fast fashion. Invest in high-durability, repairable clothing.\nStep 3: Support zero-waste packaging, local farmers, and biodegradable container options.' },
+    { title: 'Water-Wise Garden', desc: 'Grow food at home using just 30% of normal water. Drip irrigation, mulching, and drought-resistant native plant choices.', time: '7 min read', emoji: <Droplet className="w-5 h-5" />, content: 'Step 1: Mulching. Add coconut coir, woodchips or organic straw to retain moisture in potting soils.\nStep 2: Rainwater harvesting. Install simple drums connected to terrace downspouts.\nStep 3: Drip nozzles. Automate root-level watering in early mornings to minimize evaporative loss.' },
   ];
 
   return (
@@ -1238,7 +1221,7 @@ function SustainabilityPage() {
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
-          <h3 className="font-semibold text-foreground mb-1 flex items-center gap-2">🌍 Travel Carbon Footprint Calculator</h3>
+          <h3 className="font-semibold text-foreground mb-1 flex items-center gap-2">Travel Carbon Footprint Calculator</h3>
           <p className="text-xs text-muted-foreground mb-4">Calculate CO₂ emissions and adapt your travel habits</p>
           <div className="space-y-3">
             <div>
@@ -1267,7 +1250,7 @@ function SustainabilityPage() {
                 <div className="text-3xl font-bold text-primary">{carbonResult} kg CO₂</div>
                 <div className="text-xs text-muted-foreground mt-1">Estimated monthly travel emissions</div>
                 <div className="text-xs text-primary mt-2 font-medium">
-                  {carbonResult < 50 ? '🌟 Excellent carbon score!' : carbonResult < 100 ? '👍 Good, try carpooling or biking!' : '⚠️ Consider carbon offsetting or public transit'}
+                  {carbonResult < 50 ? <span className="flex items-center gap-1"><Star className="w-4 h-4 text-yellow-500" /> Excellent carbon score!</span> : carbonResult < 100 ? <span className="flex items-center gap-1"><ThumbsUp className="w-4 h-4 text-blue-500" /> Good, try carpooling or biking!</span> : <span className="flex items-center gap-1"><AlertTriangle className="w-4 h-4 text-amber-500" /> Consider carbon offsetting or public transit</span>}
                 </div>
               </div>
             )}
@@ -1295,7 +1278,6 @@ function SustainabilityPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {guides.map(g => (
           <div key={g.title} onClick={() => setActiveGuide(g)} className="bg-card border border-border rounded-xl p-4 hover:border-primary/30 hover:shadow-md transition-all cursor-pointer group flex gap-4">
-            <span className="text-3xl flex-shrink-0 bg-muted rounded-xl p-1.5 h-12 w-12 flex items-center justify-center">{g.emoji}</span>
             <div>
               <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm sm:text-base">{g.title}</h3>
               <p className="text-xs text-muted-foreground mt-1 line-clamp-2 leading-relaxed">{g.desc}</p>
@@ -1310,7 +1292,6 @@ function SustainabilityPage() {
           <div className="bg-card border border-border max-w-md w-full rounded-2xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-150">
             <div className="p-5 border-b border-border flex items-center justify-between bg-muted/20">
               <div className="flex items-center gap-2">
-                <span className="text-2xl">{activeGuide.emoji}</span>
                 <h3 className="font-bold text-foreground text-base sm:text-lg">{activeGuide.title}</h3>
               </div>
               <button onClick={() => setActiveGuide(null)} className="text-muted-foreground hover:text-foreground">
@@ -2000,17 +1981,17 @@ function EcoImpactPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         <div className="bg-card border border-border p-5 rounded-xl shadow-sm">
-          <div className="text-3xl mb-1">🌳</div>
+          <div className="flex justify-center text-3xl mb-1"><TreePine className="w-8 h-8 text-green-600" /></div>
           <div className="text-2xl font-bold text-foreground">{impactStats.trees.toLocaleString()}</div>
           <div className="text-xs text-muted-foreground font-medium">Native Saplings Planted</div>
         </div>
         <div className="bg-card border border-border p-5 rounded-xl shadow-sm">
-          <div className="text-3xl mb-1">💧</div>
+          <div className="flex justify-center text-3xl mb-1"><Droplet className="w-8 h-8 text-blue-600" /></div>
           <div className="text-2xl font-bold text-foreground">{impactStats.water.toLocaleString()} L</div>
           <div className="text-xs text-muted-foreground font-medium">Irrigation Water Preserved</div>
         </div>
         <div className="bg-card border border-border p-5 rounded-xl shadow-sm">
-          <div className="text-3xl mb-1">🗑️</div>
+          <div className="flex justify-center text-3xl mb-1"><Trash className="w-8 h-8 text-gray-600" /></div>
           <div className="text-2xl font-bold text-foreground">{impactStats.waste.toLocaleString()} kg</div>
           <div className="text-xs text-muted-foreground font-medium">Recycled Solid Waste</div>
         </div>
@@ -2388,10 +2369,10 @@ export default function Dashboard() {
   };
 
   const notifications = [
-    { icon: '📖', text: 'New lesson available in Biodiversity', time: '2h ago' },
+    { icon: <BookOpen className="w-4 h-4" />, text: 'New lesson available in Biodiversity', time: '2h ago' },
     { icon: '🏅', text: 'You earned the "Eco Warrior" badge!', time: '5h ago' },
-    { icon: '🌳', text: 'Tree Planting Challenge ending soon', time: '1d ago' },
-    { icon: '💬', text: 'Reply in Forest Ecology Forum', time: '2d ago' },
+    { icon: <TreePine className="w-4 h-4" />, text: 'Tree Planting Challenge ending soon', time: '1d ago' },
+    { icon: <MessageSquare className="w-4 h-4 text-blue-500" />, text: 'Reply in Forest Ecology Forum', time: '2d ago' },
   ];
 
   return (

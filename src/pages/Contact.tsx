@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
-import { Mail, Phone, MapPin, Clock, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, Loader2, CheckCircle2, AlertCircle , Leaf } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -84,7 +84,7 @@ export default function Contact() {
                 ))}
 
                 <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
-                  <h4 className="font-semibold text-foreground mb-2">🌿 For NGOs & Educators</h4>
+                  <h4 className="font-semibold text-foreground mb-2"><Leaf className="inline w-5 h-5 mr-2 text-green-500" /> For NGOs & Educators</h4>
                   <p className="text-sm text-muted-foreground">We offer special pricing and dedicated support for schools, universities, and environmental NGOs. Reach out to discuss your needs.</p>
                 </div>
               </div>
@@ -155,7 +155,7 @@ export default function Contact() {
         {/* Newsletter */}
         <section className="py-16 bg-muted/20">
           <div className="container mx-auto px-4 max-w-2xl text-center">
-            <h2 className="text-2xl font-bold text-foreground mb-3">🌿 Nature Digest Newsletter</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-3"><Leaf className="inline w-6 h-6 mr-2 text-green-500" /> Nature Digest Newsletter</h2>
             <p className="text-muted-foreground mb-6">Weekly nature stories, conservation news, new course alerts, and eco-tips straight to your inbox.</p>
             <NewsletterForm />
           </div>
@@ -179,7 +179,7 @@ function NewsletterForm() {
     await new Promise(r => setTimeout(r, 1000));
     setLoading(false);
     setDone(true);
-    toast.success('Subscribed! Welcome to the NatureGyan community 🌱');
+    toast.success('Subscribed! Welcome to the NatureGyan community!');
   };
 
   if (done) return (

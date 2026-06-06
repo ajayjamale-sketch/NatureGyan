@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   FileText, BookOpen, Users, TrendingUp, Download, ExternalLink,
   Plus, Eye, MessageSquare, Globe, Clock, Star, Upload, Search, X, User, Mail, CheckCircle
-} from 'lucide-react';
+, Microscope } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -133,7 +133,7 @@ function JoinNetworkModal({ isOpen, onClose, onSuccess }: { isOpen: boolean; onC
             className="mt-1"
           />
           <label htmlFor="agreeNetwork" className="text-xs text-muted-foreground">
-            I agree to share my research interests and collaborate with the network. 🌍
+            I agree to share my research interests and collaborate with the network.
           </label>
         </div>
         <Button type="submit" className="w-full gradient-primary text-white" disabled={isSubmitting}>
@@ -239,7 +239,7 @@ export default function ResearcherDashboard() {
       {/* Welcome */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Research Dashboard 🔬</h1>
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">Research Dashboard <Microscope className="w-6 h-6 text-primary" /></h1>
           <p className="text-muted-foreground mt-1 text-sm">Welcome back, Dr. {user.name.split(' ')[0]}. Oversee publication milestones and collaborate with international institutes.</p>
         </div>
         <div className="flex gap-2 flex-wrap">

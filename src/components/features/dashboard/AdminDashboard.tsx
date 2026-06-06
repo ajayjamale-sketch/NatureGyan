@@ -87,7 +87,7 @@ export default function AdminDashboard() {
       {/* Welcome */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Admin Control Panel 🛡️</h1>
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">Admin Control Panel <Shield className="w-6 h-6 text-primary" /></h1>
           <p className="text-muted-foreground mt-1 text-sm">Welcome back, {user.name}. You have {state.flaggedContent.length} pending moderation actions.</p>
         </div>
         <div className="flex gap-2 flex-wrap">

@@ -80,13 +80,12 @@ export default function About() {
           <div className="container mx-auto px-4 lg:px-6 max-w-7xl">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
               {[
-                { value: '2.4M+', label: 'Active Learners', emoji: '🌍' },
-                { value: '500+', label: 'Expert Courses', emoji: '📚' },
-                { value: '1M+', label: 'Trees Planted', emoji: '🌳' },
-                { value: '50K+', label: 'Species Identified', emoji: '🦋' },
-              ].map(({ value, label, emoji }) => (
+                { value: '2.4M+', label: 'Active Learners' },
+                { value: '500+', label: 'Expert Courses' },
+                { value: '1M+', label: 'Trees Planted' },
+                { value: '50K+', label: 'Species Identified' },
+              ].map(({ value, label }) => (
                 <div key={label} className="rounded-2xl p-6 bg-card border border-border">
-                  <div className="text-3xl mb-2">{emoji}</div>
                   <div className="text-3xl font-bold text-primary mb-1">{value}</div>
                   <div className="text-sm text-muted-foreground">{label}</div>
                 </div>

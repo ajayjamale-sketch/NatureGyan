@@ -4,7 +4,7 @@ import {
   Users, BookOpen, TrendingUp, Star, Plus, Eye, Edit, Trash2,
   MessageSquare, BarChart3, Clock, ChevronRight, CheckCircle, Send, X, Calendar, Image as ImageIcon,
   FileText, ClipboardList, Megaphone, Award, GradingIcon
-} from 'lucide-react';
+, GraduationCap } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -365,7 +365,7 @@ export default function TeacherDashboard() {
       {/* Welcome and top bar */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Educator Dashboard 🎓</h1>
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">Educator Dashboard <GraduationCap className="w-6 h-6 text-primary" /></h1>
           <p className="text-muted-foreground mt-1 text-sm">Manage classroom streams, assignments, announcements, and grading.</p>
         </div>
         <div className="flex gap-2 flex-wrap">
@@ -484,7 +484,7 @@ export default function TeacherDashboard() {
                         </div>
                       </div>
                       <div className="flex justify-between items-center mt-2 text-xs">
-                        <span>📄 Submissions: {submissionsCount} submitted</span>
+                        <span className="flex items-center gap-1"><FileText className="w-4 h-4" /> Submissions: {submissionsCount} submitted</span>
                         <span>✅ Graded: {gradedCount}</span>
                         <Button size="sm" variant="outline" className="h-7 text-xs" onClick={() => setSelectedAssignment(ass)}>View Submissions</Button>
                       </div>
@@ -515,7 +515,7 @@ export default function TeacherDashboard() {
                   </div>
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <span>⭐ {c.rating || 5.0}</span>
-                    <span>👥 {(c.enrolled || 1).toLocaleString()} enrolled</span>
+                    <span className="flex items-center gap-1"><Users className="w-4 h-4" /> {(c.enrolled || 1).toLocaleString()} enrolled</span>
                   </div>
                 </div>
               ))}

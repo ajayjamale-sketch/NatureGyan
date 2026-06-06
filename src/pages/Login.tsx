@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, AlertCircle, Loader2, Zap } from 'lucide-react';
+import { Eye, EyeOff, AlertCircle, Loader2, Zap , Backpack , Microscope , TreePine , Sun , Moon , Globe , GraduationCap , Bug , Shield , Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -11,12 +11,12 @@ import { toast } from 'sonner';
 import logoImg from '@/assets/logo.jpg';
 
 const DEMO_ROLES = [
-  { key: 'student', label: 'Student', emoji: '🎒', color: 'bg-green-500 hover:bg-green-600', desc: 'Courses & Eco-Challenges' },
-  { key: 'teacher', label: 'Teacher', emoji: '🎓', color: 'bg-blue-500 hover:bg-blue-600', desc: 'Classroom & Analytics' },
-  { key: 'researcher', label: 'Researcher', emoji: '🔬', color: 'bg-purple-500 hover:bg-purple-600', desc: 'Research & Publications' },
-  { key: 'enthusiast', label: 'Enthusiast', emoji: '🦋', color: 'bg-amber-500 hover:bg-amber-600', desc: 'Species & Citizen Science' },
-  { key: 'ngo', label: 'NGO / Org', emoji: '🌳', color: 'bg-teal-500 hover:bg-teal-600', desc: 'Campaigns & Volunteers' },
-  { key: 'admin', label: 'Admin', emoji: '🛡️', color: 'bg-red-500 hover:bg-red-600', desc: 'Platform Management' },
+  { key: 'student', label: 'Student', emoji: <Backpack className="w-5 h-5 text-white" />, color: 'bg-green-500 hover:bg-green-600', desc: 'Courses & Eco-Challenges' },
+  { key: 'teacher', label: 'Teacher', emoji: <GraduationCap className="w-5 h-5 text-white" />, color: 'bg-blue-500 hover:bg-blue-600', desc: 'Classroom & Analytics' },
+  { key: 'researcher', label: 'Researcher', emoji: <Microscope className="w-5 h-5 text-white" />, color: 'bg-purple-500 hover:bg-purple-600', desc: 'Research & Publications' },
+  { key: 'enthusiast', label: 'Enthusiast', emoji: <Bug className="w-5 h-5 text-white" />, color: 'bg-amber-500 hover:bg-amber-600', desc: 'Species & Citizen Science' },
+  { key: 'ngo', label: 'NGO / Org', emoji: <TreePine className="w-5 h-5 text-white" />, color: 'bg-teal-500 hover:bg-teal-600', desc: 'Campaigns & Volunteers' },
+  { key: 'admin', label: 'Admin', emoji: <Shield className="w-5 h-5 text-white" />, color: 'bg-red-500 hover:bg-red-600', desc: 'Platform Management' },
 ];
 
 export default function Login() {
@@ -130,7 +130,7 @@ export default function Login() {
               onClick={toggleTheme}
               className="ml-auto text-muted-foreground hover:text-foreground p-2 rounded-lg hover:bg-muted transition-colors text-xs flex items-center gap-1.5"
             >
-              {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+              {theme === 'dark' ? <span className="flex items-center gap-1"><Sun className="w-4 h-4" /> Light</span> : <span className="flex items-center gap-1"><Moon className="w-4 h-4" /> Dark</span>}
             </button>
           </div>
 
@@ -231,8 +231,8 @@ export default function Login() {
 
           <div className="grid grid-cols-2 gap-3">
             {[
-              { provider: 'Google', icon: '🌐' },
-              { provider: 'GitHub', icon: '🐙' },
+              { provider: 'Google', icon: <Globe className="w-5 h-5" /> },
+              { provider: 'GitHub', icon: <Github className="w-5 h-5" /> },
             ].map(({ provider, icon }) => (
               <Button
                 key={provider}

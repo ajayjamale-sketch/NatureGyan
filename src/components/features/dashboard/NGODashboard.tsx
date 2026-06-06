@@ -131,7 +131,7 @@ export default function NGODashboard() {
     setUserVolunteeredCampaigns(newVolunteered);
     localStorage.setItem(`volunteered_${user.id}`, JSON.stringify(newVolunteered));
 
-    toast.success(`You have successfully volunteered for "${campaignName}"! 🎉`);
+    toast.success(`You have successfully volunteered for "${campaignName}"!`);
     setConfirmModal({ open: false, campaignId: '', campaignName: '' });
   };
 
@@ -204,7 +204,7 @@ export default function NGODashboard() {
       {/* Welcome */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">NGO Impact Dashboard 🌳</h1>
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">NGO Impact Dashboard <TreePine className="w-6 h-6 text-primary" /></h1>
           <p className="text-muted-foreground mt-1 text-sm">Green Earth Foundation · {user.name} · Mobilizing eco-drives and volunteer actions.</p>
         </div>
         <div className="flex gap-2 flex-wrap">

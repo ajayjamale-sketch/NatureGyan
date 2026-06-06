@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Leaf, Award, Target, TrendingUp, ChevronRight, Calendar, Play, X, User, Mail, Users, Globe, Image as ImageIcon } from 'lucide-react';
+import { BookOpen, Leaf, Award, Target, TrendingUp, ChevronRight, Calendar, Play, X, User, Mail, Users, Globe, Image as ImageIcon , TreePine , Droplet , Check , Bug } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
@@ -172,9 +172,9 @@ export default function StudentDashboard() {
   ];
 
   const recentActivity = [
-    { icon: '📖', text: 'Enrolled in Ecology & Biodiversity fundamentals', time: 'Active now' },
-    { icon: '🦋', text: `Logged ${state.sightings.length} species sightings`, time: 'Updated live' },
-    { icon: '🌳', text: communityJoined ? 'You joined the Eco Challenge Network' : 'Join the Eco Challenge Network', time: communityJoined ? 'Just now' : '1 day ago', action: !communityJoined ? handleJoinCommunity : undefined },
+    { icon: <BookOpen className="w-4 h-4 text-primary" />, text: 'Enrolled in Ecology & Biodiversity fundamentals', time: 'Active now' },
+    { icon: <Bug className="w-4 h-4 text-blue-500" />, text: `Logged ${state.sightings.length} species sightings`, time: 'Updated live' },
+    { icon: <TreePine className="w-4 h-4 text-primary" />, text: communityJoined ? 'You joined the Eco Challenge Network' : 'Join the Eco Challenge Network', time: communityJoined ? 'Just now' : '1 day ago', action: !communityJoined ? handleJoinCommunity : undefined },
   ];
 
   return (
@@ -182,7 +182,7 @@ export default function StudentDashboard() {
       {/* Welcome */}
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Welcome back, {user.name.split(' ')[0]}! 🌿</h1>
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">Welcome back, {user.name.split(' ')[0]}! <Leaf className="w-6 h-6 text-primary" /></h1>
           <p className="text-muted-foreground mt-1 text-sm">You have {activeCourses.length} active courses and {registeredEvents.length} registered events.</p>
         </div>
         <Button className="gradient-primary text-white hidden sm:flex gap-2 shrink-0 font-semibold" onClick={openCoursesModal}>
@@ -340,9 +340,9 @@ export default function StudentDashboard() {
             <h3 className="font-semibold text-foreground mb-4">My Eco Impact</h3>
             <div className="space-y-3">
               {[
-                { emoji: '🌳', label: 'Trees Planted', value: '12' },
+                { emoji: <TreePine className="w-8 h-8 text-green-500" />, label: 'Trees Planted', value: '12' },
                 { emoji: '♻️', label: 'CO₂ Saved', value: '340 kg' },
-                { emoji: '💧', label: 'Water Conserved', value: '1,200 L' },
+                { emoji: <Droplet className="w-8 h-8 text-blue-500" />, label: 'Water Conserved', value: '1,200 L' },
                 { emoji: '🦁', label: 'Species Identified', value: String(state.sightings.length) },
               ].map(({ emoji, label, value }) => (
                 <div key={label} className="flex items-center justify-between">
@@ -482,7 +482,7 @@ export default function StudentDashboard() {
                 <div className="flex-1">
                   <div className="font-semibold text-foreground">{event.name}</div>
                   <div className="text-xs text-muted-foreground">{event.location} · {event.time}</div>
-                  <div className="text-xs mt-1 text-primary">{event.registered ? '✓ Registered' : 'Available'}</div>
+                  <div className="text-xs mt-1 text-primary">{event.registered ? <span className="flex items-center gap-1"><Check className="w-3 h-3" /> Registered</span> : 'Available'}</div>
                 </div>
                 <Button
                   size="sm"
@@ -516,7 +516,7 @@ export default function StudentDashboard() {
           <div className="space-y-2">
             <p className="text-sm text-foreground">Continue where you left off (Lesson 4: Ecosystem Interactions)</p>
             <div className="bg-muted/50 rounded-lg p-3 text-sm">
-              <p className="font-medium">🎯 Learning Objective:</p>
+              <p className="font-medium flex items-center gap-1"><Target className="w-4 h-4" /> Learning Objective:</p>
               <p className="text-muted-foreground">Understand how energy flows through different trophic levels in a forest ecosystem.</p>
             </div>
             <Button className="w-full gradient-primary text-white" onClick={continueLesson}>

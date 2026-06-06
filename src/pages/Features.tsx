@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
-import { Brain, Camera, GraduationCap, Globe, Leaf, Users, Trophy, BarChart3, BookOpen, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Brain, Camera, GraduationCap, Globe, Leaf, Users, Trophy, BarChart3, BookOpen, ArrowRight, CheckCircle2 , Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { COURSES } from '@/constants';
 
@@ -129,7 +129,7 @@ export default function Features() {
                     <h3 className="font-semibold text-card-foreground mb-1 line-clamp-2">{course.title}</h3>
                     <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{course.description}</p>
                     <div className="flex items-center justify-between text-xs text-muted-foreground">
-                      <span>⭐ {course.rating} · {course.enrolled.toLocaleString()} learners</span>
+                      <span><Star className="inline w-4 h-4 text-yellow-500 mr-1" /> {course.rating} · {course.enrolled.toLocaleString()} learners</span>
                       <span>{course.duration}</span>
                     </div>
                   </div>

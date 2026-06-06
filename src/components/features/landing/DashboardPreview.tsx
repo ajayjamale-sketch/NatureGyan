@@ -1,4 +1,4 @@
-import { BarChart3, TrendingUp, Award, Leaf, BookOpen, Target } from 'lucide-react';
+import { BarChart3, TrendingUp, Award, Leaf, BookOpen, Target , Sprout , Bug , Waves , TreePine , Droplet } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, RadialBarChart, RadialBar } from 'recharts';
 
 const learningData = [
@@ -145,11 +145,11 @@ export default function DashboardPreview() {
                   <h4 className="font-semibold text-sm text-foreground mb-3">Recent Badges</h4>
                   <div className="grid grid-cols-3 gap-2">
                     {[
-                      { emoji: '🌱', name: 'First Steps' },
+                      { emoji: <Sprout className="w-5 h-5 text-green-500" />, name: 'First Steps' },
                       { emoji: '🌳', name: 'Tree Planter' },
-                      { emoji: '🦋', name: 'Bird Watcher' },
+                      { emoji: <Bug className="w-5 h-5 text-blue-500" />, name: 'Bird Watcher' },
                       { emoji: '⚡', name: 'Eco Warrior' },
-                      { emoji: '🌊', name: 'Ocean Guardian' },
+                      { emoji: <Waves className="w-5 h-5 text-cyan-500" />, name: 'Ocean Guardian' },
                       { emoji: '🔬', name: 'Researcher' },
                     ].map((badge) => (
                       <div key={badge.name} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors cursor-default" title={badge.name}>
@@ -165,9 +165,9 @@ export default function DashboardPreview() {
                   <h4 className="font-semibold text-sm text-foreground mb-3">My Eco Impact</h4>
                   <div className="space-y-3 text-sm">
                     {[
-                      { label: '🌳 Trees Planted', value: '12' },
+                      { label: <span className="flex items-center gap-1"><TreePine className="w-4 h-4 text-green-600" /> Trees Planted</span>, value: '12' },
                       { label: '♻️ CO₂ Saved', value: '340 kg' },
-                      { label: '💧 Water Conserved', value: '1,200 L' },
+                      { label: <span className="flex items-center gap-1"><Droplet className="w-4 h-4 text-blue-600" /> Water Conserved</span>, value: '1,200 L' },
                       { label: '🦁 Species Identified', value: '47' },
                     ].map(({ label, value }) => (
                       <div key={label} className="flex justify-between items-center">

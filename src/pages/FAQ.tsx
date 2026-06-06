@@ -71,7 +71,7 @@ export default function FAQ() {
 
             {filtered.length === 0 ? (
               <div className="text-center py-16">
-                <div className="text-4xl mb-4">🔍</div>
+                <div className="flex justify-center text-4xl mb-4"><Search className="w-10 h-10 text-primary" /></div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">No results found</h3>
                 <p className="text-muted-foreground">Try different search terms or browse all categories.</p>
               </div>

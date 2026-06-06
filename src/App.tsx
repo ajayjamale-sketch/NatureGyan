@@ -6,6 +6,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Features from "./pages/Features";
+import Learn from "./pages/Learn";
+import BiodiversityCourses from "./pages/BiodiversityCourses";
+import ClimateEducation from "./pages/ClimateEducation";
+import WildlifePrograms from "./pages/WildlifePrograms";
+import SustainabilityHub from "./pages/SustainabilityHub";
+import ResearchLibrary from "./pages/ResearchLibrary";
 import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
@@ -38,6 +44,12 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/features" element={<Features />} />
+          <Route path="/learn" element={<Learn />} />
+          <Route path="/biodiversity-courses" element={<BiodiversityCourses />} />
+          <Route path="/climate-education" element={<ClimateEducation />} />
+          <Route path="/wildlife-programs" element={<WildlifePrograms />} />
+          <Route path="/sustainability-hub" element={<SustainabilityHub />} />
+          <Route path="/research-library" element={<ResearchLibrary />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />

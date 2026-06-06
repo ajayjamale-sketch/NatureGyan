@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, AlertCircle, Loader2, CheckCircle2 } from 'lucide-react';
+import { Eye, EyeOff, AlertCircle, Loader2, CheckCircle2 , GraduationCap , User , Microscope , Bug } from 'lucide-react';
 import logoImg from '@/assets/logo.jpg';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,10 +10,10 @@ import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 
 const roles = [
-  { id: 'student', label: 'Student', emoji: '🎓' },
-  { id: 'teacher', label: 'Educator', emoji: '👩‍🏫' },
-  { id: 'researcher', label: 'Researcher', emoji: '🔬' },
-  { id: 'enthusiast', label: 'Nature Enthusiast', emoji: '🦋' },
+  { id: 'student', label: 'Student', emoji: <GraduationCap className="w-5 h-5 text-primary" /> },
+  { id: 'teacher', label: 'Educator', emoji: <User className="w-5 h-5 text-primary" /> },
+  { id: 'researcher', label: 'Researcher', emoji: <Microscope className="w-5 h-5 text-primary" /> },
+  { id: 'enthusiast', label: 'Nature Enthusiast', emoji: <Bug className="w-5 h-5 text-primary" /> },
 ];
 
 export default function Register() {

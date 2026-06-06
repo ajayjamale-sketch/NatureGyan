@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Menu, Camera, MapPin, Calendar, Award, BookOpen, Leaf, Edit2, Save, X, Loader2 } from 'lucide-react';
+import { Menu, Camera, MapPin, Calendar, Award, BookOpen, Leaf, Edit2, Save, X, Loader2 , Sprout , Bug , Waves , Handshake , TreePine , Zap , Microscope , Trophy } from 'lucide-react';
 import DashboardSidebar from '@/components/layout/DashboardSidebar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -144,14 +144,14 @@ export default function Profile() {
             <h3 className="font-semibold text-foreground mb-4">Achievement Badges</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
-                { emoji: '🌱', name: 'First Steps', desc: 'Completed first course' },
-                { emoji: '🌳', name: 'Tree Planter', desc: 'Planted 10 trees' },
-                { emoji: '🦋', name: 'Bird Watcher', desc: 'Identified 20 species' },
-                { emoji: '⚡', name: 'Eco Warrior', desc: 'Completed 5 challenges' },
-                { emoji: '🌊', name: 'Ocean Guardian', desc: 'Marine conservation study' },
-                { emoji: '🔬', name: 'Researcher', desc: 'Accessed 50 research papers' },
-                { emoji: '🤝', name: 'Community Builder', desc: 'Helped 100 learners' },
-                { emoji: '🏆', name: 'Top Learner', desc: 'Top 1% on platform' },
+                { emoji: <Sprout className="w-5 h-5 text-green-500" />, name: 'First Steps', desc: 'Completed first course' },
+                { emoji: <TreePine className="w-5 h-5 text-green-500" />, name: 'Tree Planter', desc: 'Planted 10 trees' },
+                { emoji: <Bug className="w-5 h-5 text-blue-500" />, name: 'Bird Watcher', desc: 'Identified 20 species' },
+                { emoji: <Zap className="w-5 h-5 text-yellow-500" />, name: 'Eco Warrior', desc: 'Completed 5 challenges' },
+                { emoji: <Waves className="w-5 h-5 text-cyan-500" />, name: 'Ocean Guardian', desc: 'Marine conservation study' },
+                { emoji: <Microscope className="w-5 h-5 text-purple-500" />, name: 'Researcher', desc: 'Accessed 50 research papers' },
+                { emoji: <Handshake className="w-5 h-5 text-purple-500" />, name: 'Community Builder', desc: 'Helped 100 learners' },
+                { emoji: <Trophy className="w-5 h-5 text-yellow-600" />, name: 'Top Learner', desc: 'Top 1% on platform' },
               ].map(badge => (
                 <div key={badge.name} className="flex flex-col items-center gap-2 p-3 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-colors text-center">
                   <span className="text-3xl">{badge.emoji}</span>
