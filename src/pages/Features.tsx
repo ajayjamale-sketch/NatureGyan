@@ -45,9 +45,9 @@ const featureSections = [
 ];
 
 const accentColors: Record<string, string> = {
-  green: 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400',
-  blue: 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400',
-  amber: 'bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400',
+  green: 'bg-green-50 dark:bg-primary/20 text-primary dark:text-primary',
+  blue: 'bg-sky-50 dark:bg-accent/20 text-accent dark:text-accent',
+  amber: 'bg-amber-50 dark:bg-secondary/20 text-secondary dark:text-secondary',
   teal: 'bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400',
 };
 
@@ -68,7 +68,7 @@ export default function Features() {
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
               Every tool to learn,{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-cyan-300">explore & protect</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-300">explore & protect</span>
             </h1>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
               From AI-powered species identification to certified courses and eco-impact tracking — NatureGyan brings everything together in one platform.

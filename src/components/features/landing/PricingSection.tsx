@@ -55,7 +55,7 @@ export default function PricingSection() {
               onClick={() => setYearly(true)}
             >
               Yearly
-              <span className="text-xs bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 rounded-full px-2 py-0.5">Save 30%</span>
+              <span className="text-xs bg-secondary/10 text-secondary dark:bg-secondary/30 dark:text-secondary rounded-full px-2 py-0.5">Save 30%</span>
             </button>
           </div>
         </div>
@@ -76,7 +76,7 @@ export default function PricingSection() {
                 )}
               >
                 {plan.highlighted && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-400 text-amber-900 text-xs font-bold px-4 py-1.5 rounded-full">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-secondary text-secondary-foreground text-xs font-bold px-4 py-1.5 rounded-full shadow-md">
                     MOST POPULAR
                   </div>
                 )}

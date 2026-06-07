@@ -65,8 +65,8 @@ export default function ForgotPassword() {
             </>
           ) : (
             <div className="text-center">
-              <div className="w-14 h-14 rounded-2xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-6 mx-auto">
-                <CheckCircle2 className="w-7 h-7 text-green-600" />
+              <div className="w-14 h-14 rounded-2xl bg-primary dark:bg-primary/30 flex items-center justify-center mb-6 mx-auto">
+                <CheckCircle2 className="w-7 h-7 text-primary" />
               </div>
               <h1 className="text-2xl font-bold text-card-foreground mb-2">Check your inbox</h1>
               <p className="text-muted-foreground mb-2">

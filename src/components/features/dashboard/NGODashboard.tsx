@@ -193,9 +193,9 @@ export default function NGODashboard() {
   const activeCampaigns = state.campaigns.filter(c => c.status === 'active');
 
   const stats = [
-    { icon: TreePine, label: 'Trees Planted', value: '18,400', change: '+510 this month', color: 'text-green-600 bg-green-100 dark:bg-green-900/30' },
+    { icon: TreePine, label: 'Trees Planted', value: '18,400', change: '+510 this month', color: 'text-primary bg-primary/10 dark:bg-primary/30' },
     { icon: Users, label: 'Active Volunteers', value: String(activeVolunteersCount + 380), change: 'Syncing live', color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30' },
-    { icon: Target, label: 'Campaigns Active', value: String(activeCampaigns.length), change: 'Tracked live', color: 'text-amber-600 bg-amber-100 dark:bg-amber-900/30' },
+    { icon: Target, label: 'Campaigns Active', value: String(activeCampaigns.length), change: 'Tracked live', color: 'text-secondary bg-secondary/10 dark:bg-secondary/30' },
     { icon: Globe, label: 'Impact Score', value: user.ecoPoints.toLocaleString(), change: '+640 this week', color: 'text-teal-600 bg-teal-100 dark:bg-teal-900/30' },
   ];
 
@@ -247,7 +247,7 @@ export default function NGODashboard() {
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-foreground">Campaign Impact (2026)</h3>
               <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-500 inline-block" />Trees</span>
+                <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-primary inline-block" />Trees</span>
                 <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-blue-500 inline-block" />Volunteers</span>
               </div>
             </div>
@@ -284,7 +284,7 @@ export default function NGODashboard() {
                         <div className="flex items-center gap-2 flex-wrap">
                           <h4 className="text-sm font-bold text-foreground">{c.name}</h4>
                           <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase ${
-                            c.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
+                            c.status === 'active' ? 'bg-primary/10 text-primary' : 'bg-gray-100 text-gray-700'
                           }`}>{c.status}</span>
                           {hasVolunteered && (
                             <span className="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-semibold flex items-center gap-1">
@@ -304,7 +304,7 @@ export default function NGODashboard() {
                           disabled={hasVolunteered}
                           className={`p-1.5 rounded-lg transition-colors ${
                             hasVolunteered
-                              ? 'bg-green-100 text-green-600 cursor-default'
+                              ? 'bg-primary/10 text-primary cursor-default'
                               : 'border border-primary/30 bg-primary/5 text-primary hover:bg-primary/10'
                           }`}
                           title={hasVolunteered ? "Already volunteered" : "Volunteer for this campaign"}
@@ -338,7 +338,7 @@ export default function NGODashboard() {
                         variant={hasVolunteered ? "outline" : "default"}
                         className={`w-full text-xs ${
                           hasVolunteered
-                            ? 'border-green-500 text-green-600 bg-green-50 hover:bg-green-100'
+                            ? 'border-green-500 text-primary bg-green-50 hover:bg-primary'
                             : 'gradient-primary text-white'
                         }`}
                         onClick={() => openVolunteerConfirm(c.id, c.name)}

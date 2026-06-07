@@ -165,10 +165,10 @@ export default function StudentDashboard() {
   };
 
   const stats = [
-    { icon: BookOpen, label: 'Courses Completed', value: String(user.coursesCompleted || 0), change: 'Tracked live', color: 'text-green-600 bg-green-100 dark:bg-green-900/30' },
-    { icon: Leaf, label: 'Eco Points', value: user.ecoPoints.toLocaleString(), change: 'Rank #42', color: 'text-emerald-600 bg-emerald-100 dark:bg-emerald-900/30' },
-    { icon: Award, label: 'Badges Earned', value: String(user.badges?.length || 0), change: 'Level 3 Naturalist', color: 'text-amber-600 bg-amber-100 dark:bg-amber-900/30' },
-    { icon: Target, label: 'Nature Observations', value: String(state.sightings.length), change: 'Logged in DB', color: 'text-sky-600 bg-sky-100 dark:bg-sky-900/30' },
+    { icon: BookOpen, label: 'Courses Completed', value: String(user.coursesCompleted || 0), change: 'Tracked live', color: 'text-primary bg-primary/10 dark:bg-primary/30' },
+    { icon: Leaf, label: 'Eco Points', value: user.ecoPoints.toLocaleString(), change: 'Rank #42', color: 'text-primary bg-primary/10 dark:bg-primary/30' },
+    { icon: Award, label: 'Badges Earned', value: String(user.badges?.length || 0), change: 'Level 3 Naturalist', color: 'text-secondary bg-secondary/10 dark:bg-secondary/30' },
+    { icon: Target, label: 'Nature Observations', value: String(state.sightings.length), change: 'Logged in DB', color: 'text-accent bg-accent/10 dark:bg-accent/30' },
   ];
 
   const recentActivity = [
@@ -340,7 +340,7 @@ export default function StudentDashboard() {
             <h3 className="font-semibold text-foreground mb-4">My Eco Impact</h3>
             <div className="space-y-3">
               {[
-                { emoji: <TreePine className="w-8 h-8 text-green-500" />, label: 'Trees Planted', value: '12' },
+                { emoji: <TreePine className="w-8 h-8 text-primary" />, label: 'Trees Planted', value: '12' },
                 { emoji: '♻️', label: 'CO₂ Saved', value: '340 kg' },
                 { emoji: <Droplet className="w-8 h-8 text-blue-500" />, label: 'Water Conserved', value: '1,200 L' },
                 { emoji: '🦁', label: 'Species Identified', value: String(state.sightings.length) },
@@ -409,7 +409,7 @@ export default function StudentDashboard() {
               </Button>
             </div>
             {communityJoined && (
-              <div className="mt-3 pt-3 border-t border-border text-xs text-green-600 flex items-center gap-1">
+              <div className="mt-3 pt-3 border-t border-border text-xs text-primary flex items-center gap-1">
                 <Globe className="w-3 h-3" /> You're part of 12,345 members worldwide
               </div>
             )}

@@ -55,7 +55,7 @@ export default function Profile() {
                 <div className="relative">
                   <Avatar className="w-24 h-24 ring-4 ring-background">
                     <AvatarImage src={user.avatar} alt={user.name} />
-                    <AvatarFallback className="bg-primary text-primary-foreground text-2xl font-bold">
+                    <AvatarFallback className="bg-primary/10 text-primary-foreground text-2xl font-bold">
                       {user.name.slice(0, 2).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
@@ -115,9 +115,9 @@ export default function Profile() {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-4 mb-6">
             {[
-              { icon: BookOpen, value: String(user.coursesCompleted || 8), label: 'Courses Completed', color: 'text-green-600 bg-green-50 dark:bg-green-900/20' },
-              { icon: Leaf, value: user.ecoPoints.toLocaleString(), label: 'Eco Points', color: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20' },
-              { icon: Award, value: String(user.badges?.length || 12), label: 'Badges Earned', color: 'text-amber-600 bg-amber-50 dark:bg-amber-900/20' },
+              { icon: BookOpen, value: String(user.coursesCompleted || 8), label: 'Courses Completed', color: 'text-primary bg-green-50 dark:bg-primary/20' },
+              { icon: Leaf, value: user.ecoPoints.toLocaleString(), label: 'Eco Points', color: 'text-primary bg-emerald-50 dark:bg-primary/20' },
+              { icon: Award, value: String(user.badges?.length || 12), label: 'Badges Earned', color: 'text-secondary bg-amber-50 dark:bg-secondary/20' },
             ].map(({ icon: Icon, value, label, color }) => (
               <div key={label} className="rounded-xl p-4 bg-card border border-border text-center">
                 <div className={`w-10 h-10 rounded-xl ${color} flex items-center justify-center mx-auto mb-2`}>
@@ -144,13 +144,13 @@ export default function Profile() {
             <h3 className="font-semibold text-foreground mb-4">Achievement Badges</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
-                { emoji: <Sprout className="w-5 h-5 text-green-500" />, name: 'First Steps', desc: 'Completed first course' },
-                { emoji: <TreePine className="w-5 h-5 text-green-500" />, name: 'Tree Planter', desc: 'Planted 10 trees' },
+                { emoji: <Sprout className="w-5 h-5 text-primary" />, name: 'First Steps', desc: 'Completed first course' },
+                { emoji: <TreePine className="w-5 h-5 text-primary" />, name: 'Tree Planter', desc: 'Planted 10 trees' },
                 { emoji: <Bug className="w-5 h-5 text-blue-500" />, name: 'Bird Watcher', desc: 'Identified 20 species' },
                 { emoji: <Zap className="w-5 h-5 text-yellow-500" />, name: 'Eco Warrior', desc: 'Completed 5 challenges' },
                 { emoji: <Waves className="w-5 h-5 text-cyan-500" />, name: 'Ocean Guardian', desc: 'Marine conservation study' },
-                { emoji: <Microscope className="w-5 h-5 text-purple-500" />, name: 'Researcher', desc: 'Accessed 50 research papers' },
-                { emoji: <Handshake className="w-5 h-5 text-purple-500" />, name: 'Community Builder', desc: 'Helped 100 learners' },
+                { emoji: <Microscope className="w-5 h-5 text-primary" />, name: 'Researcher', desc: 'Accessed 50 research papers' },
+                { emoji: <Handshake className="w-5 h-5 text-primary" />, name: 'Community Builder', desc: 'Helped 100 learners' },
                 { emoji: <Trophy className="w-5 h-5 text-yellow-600" />, name: 'Top Learner', desc: 'Top 1% on platform' },
               ].map(badge => (
                 <div key={badge.name} className="flex flex-col items-center gap-2 p-3 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-colors text-center">

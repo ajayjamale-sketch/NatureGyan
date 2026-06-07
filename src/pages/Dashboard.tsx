@@ -176,7 +176,7 @@ function CoursesPage() {
               </div>
               <div className="p-4 pt-0 border-t border-border/40 mt-auto bg-muted/10">
                 {isCompleted ? (
-                  <div className="flex items-center justify-between py-2 text-xs font-semibold text-green-600 dark:text-green-400">
+                  <div className="flex items-center justify-between py-2 text-xs font-semibold text-primary dark:text-primary">
                     <span className="flex items-center gap-1"><Check className="w-4 h-4" /> Course Completed</span>
                     <span>100%</span>
                   </div>
@@ -310,8 +310,8 @@ function AIAssistantPage() {
           <h1 className="text-xl font-bold text-foreground">AI Nature Assistant & Species ID</h1>
           <p className="text-xs text-muted-foreground font-medium">Powered by NatureGyan AI · Nature Q&A, Bird/Plant ID & Learning Support</p>
         </div>
-        <span className="ml-auto flex items-center gap-1.5 text-xs text-green-600 bg-green-100 dark:bg-green-900/30 dark:text-green-400 rounded-full px-2.5 py-1 font-semibold">
-          <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" /> Online
+        <span className="ml-auto flex items-center gap-1.5 text-xs text-primary bg-primary/10 dark:bg-primary/30 dark:text-primary rounded-full px-2.5 py-1 font-semibold">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" /> Online
         </span>
       </div>
 
@@ -402,8 +402,8 @@ function BiodiversityPage() {
   const statusColors: Record<string, string> = {
     'Endangered': 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
     'Critically Endangered': 'bg-red-200 text-red-800 dark:bg-red-900/40 dark:text-red-300',
-    'Vulnerable': 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
-    'Least Concern': 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
+    'Vulnerable': 'bg-secondary/10 text-secondary dark:bg-secondary/30 dark:text-secondary',
+    'Least Concern': 'bg-primary/10 text-primary dark:bg-primary/30 dark:text-primary',
   };
 
   const categories = ['All', 'Mammals', 'Birds', 'Plants', 'Reptiles'];
@@ -602,11 +602,11 @@ function ChallengesPage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
         {state.challenges.map(c => (
-          <div key={c.id} className={cn('bg-card border rounded-xl p-5 hover:shadow-md transition-all flex flex-col justify-between', c.completed ? 'border-green-200 dark:border-green-800 bg-green-50/20 dark:bg-green-950/10' : 'border-border hover:border-primary/30')}>
+          <div key={c.id} className={cn('bg-card border rounded-xl p-5 hover:shadow-md transition-all flex flex-col justify-between', c.completed ? 'border-green-200 dark:border-green-800 bg-green-50/20 dark:bg-primary/10' : 'border-border hover:border-primary/30')}>
             <div>
               <div className="flex items-start justify-between mb-3">
                 {c.completed ? (
-                  <span className="flex items-center gap-1 text-xs font-semibold text-green-600 bg-green-100 dark:bg-green-900/30 rounded-full px-2.5 py-1">
+                  <span className="flex items-center gap-1 text-xs font-semibold text-primary bg-primary/10 dark:bg-primary/30 rounded-full px-2.5 py-1">
                     <CheckCircle className="w-3 h-3" /> Completed
                   </span>
                 ) : (
@@ -637,7 +637,7 @@ function ChallengesPage() {
                   </Button>
                 </div>
               ) : (
-                <Button size="sm" variant="outline" className="w-full h-8 text-xs border-green-300 text-green-700 dark:border-green-700 dark:text-green-400 bg-green-50/50 dark:bg-green-950/20" disabled>
+                <Button size="sm" variant="outline" className="w-full h-8 text-xs border-green-300 text-primary dark:border-green-700 dark:text-primary bg-green-50/50 dark:bg-primary/20" disabled>
                   ✓ Claimed
                 </Button>
               )}
@@ -662,7 +662,7 @@ function CommunityPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [newPostModal, setNewPostModal] = useState(false);
   const [newPostTitle, setNewPostTitle] = useState('');
-  const [newPostEmoji, setNewPostEmoji] = useState(<Sprout className="w-5 h-5 text-green-500" /> as React.ReactNode);
+  const [newPostEmoji, setNewPostEmoji] = useState(<Sprout className="w-5 h-5 text-primary" /> as React.ReactNode);
   const [newPostCategory, setNewPostCategory] = useState('Ecology');
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [activeForum, setActiveForum] = useState<string | null>(null);
@@ -976,8 +976,8 @@ function AnalyticsPage() {
         <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
           <h3 className="font-semibold text-foreground mb-4 border-b border-border/40 pb-2">Your Environmental Impact Metrics</h3>
           {[
-            { emoji: <TreePine className="w-5 h-5 text-green-600" />, label: 'Reforestation contribution', value: '12 Trees' },
-            { emoji: <Recycle className="w-5 h-5 text-green-500" />, label: 'Travel CO₂ emissions offset', value: '340 kg' },
+            { emoji: <TreePine className="w-5 h-5 text-primary" />, label: 'Reforestation contribution', value: '12 Trees' },
+            { emoji: <Recycle className="w-5 h-5 text-primary" />, label: 'Travel CO₂ emissions offset', value: '340 kg' },
             { emoji: <Droplet className="w-5 h-5 text-blue-600" />, label: 'Simulated Water conserved', value: '1,200 Litres' },
             { emoji: <Cat className="w-5 h-5 text-yellow-600" />, label: 'Species identified in wilderness', value: `${state.sightings.length} flora/fauna` },
           ].map(({ emoji, label, value }) => (
@@ -1122,7 +1122,7 @@ function ResearchPage() {
                 <p className="text-xs text-muted-foreground mt-1">Authors: {p.authors} · {p.year} {p.journal && `· Journal: ${p.journal}`}</p>
                 <div className="mt-2 flex items-center gap-2">
                   <span className="text-[10px] bg-muted text-muted-foreground px-2 py-0.5 rounded-full font-semibold">{p.category}</span>
-                  <span className={cn('text-[10px] px-2 py-0.5 rounded-full font-semibold', p.status === 'published' ? 'bg-green-50 text-green-600 dark:bg-green-950/20' : 'bg-amber-50 text-amber-600 dark:bg-amber-950/20')}>{p.status}</span>
+                  <span className={cn('text-[10px] px-2 py-0.5 rounded-full font-semibold', p.status === 'published' ? 'bg-green-50 text-primary dark:bg-primary/20' : 'bg-amber-50 text-secondary dark:bg-secondary/20')}>{p.status}</span>
                 </div>
               </div>
               <div className="flex-shrink-0 flex items-center gap-1.5">
@@ -1250,7 +1250,7 @@ function SustainabilityPage() {
                 <div className="text-3xl font-bold text-primary">{carbonResult} kg CO₂</div>
                 <div className="text-xs text-muted-foreground mt-1">Estimated monthly travel emissions</div>
                 <div className="text-xs text-primary mt-2 font-medium">
-                  {carbonResult < 50 ? <span className="flex items-center gap-1"><Star className="w-4 h-4 text-yellow-500" /> Excellent carbon score!</span> : carbonResult < 100 ? <span className="flex items-center gap-1"><ThumbsUp className="w-4 h-4 text-blue-500" /> Good, try carpooling or biking!</span> : <span className="flex items-center gap-1"><AlertTriangle className="w-4 h-4 text-amber-500" /> Consider carbon offsetting or public transit</span>}
+                  {carbonResult < 50 ? <span className="flex items-center gap-1"><Star className="w-4 h-4 text-yellow-500" /> Excellent carbon score!</span> : carbonResult < 100 ? <span className="flex items-center gap-1"><ThumbsUp className="w-4 h-4 text-blue-500" /> Good, try carpooling or biking!</span> : <span className="flex items-center gap-1"><AlertTriangle className="w-4 h-4 text-secondary" /> Consider carbon offsetting or public transit</span>}
                 </div>
               </div>
             )}
@@ -1380,7 +1380,7 @@ function MySightingsPage() {
             <div>
               <div className="h-32 bg-muted relative">
                 <img src={s.img} alt={s.name} className="w-full h-full object-cover" />
-                {s.rare && <span className="absolute top-2 right-2 text-[10px] bg-amber-500 text-white font-bold px-2 py-0.5 rounded-full">Rare</span>}
+                {s.rare && <span className="absolute top-2 right-2 text-[10px] bg-secondary text-white font-bold px-2 py-0.5 rounded-full">Rare</span>}
               </div>
               <div className="p-4 space-y-1">
                 <span className="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold uppercase">{s.category}</span>
@@ -1561,8 +1561,8 @@ function MyStudentsPage() {
                 <td className="p-3 text-xs text-muted-foreground">{s.lastActive}</td>
                 <td className="p-3">
                   <span className={cn('text-[10px] font-semibold px-2 py-0.5 rounded-full capitalize', 
-                    s.status === 'active' ? 'bg-green-50 text-green-600 dark:bg-green-950/20' : 
-                    s.status === 'at-risk' ? 'bg-amber-50 text-amber-600 dark:bg-amber-950/20' : 
+                    s.status === 'active' ? 'bg-green-50 text-primary dark:bg-primary/20' : 
+                    s.status === 'at-risk' ? 'bg-amber-50 text-secondary dark:bg-secondary/20' : 
                     'bg-red-50 text-red-600 dark:bg-red-950/20'
                   )}>{s.status}</span>
                 </td>
@@ -1750,7 +1750,7 @@ function CampaignsPage() {
               <div className="flex items-start justify-between mb-2">
                 <h3 className="font-bold text-foreground group-hover:text-primary transition-colors text-base sm:text-lg">{c.name}</h3>
                 <span className={cn('text-[10px] font-bold px-2 py-0.5 rounded-full capitalize',
-                  c.status === 'active' ? 'bg-green-50 text-green-600 dark:bg-green-950/20' :
+                  c.status === 'active' ? 'bg-green-50 text-primary dark:bg-primary/20' :
                   c.status === 'planning' ? 'bg-blue-50 text-blue-600 dark:bg-blue-950/20' :
                   'bg-gray-100 text-gray-600 dark:bg-gray-800'
                 )}>{c.status}</span>
@@ -1917,7 +1917,7 @@ function VolunteersPage() {
                 <td className="p-3 text-xs text-primary font-bold">{v.score} pts</td>
                 <td className="p-3">
                   <span className={cn('text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase',
-                    v.status === 'approved' ? 'bg-green-50 text-green-600 dark:bg-green-950/20' : 'bg-amber-50 text-amber-600 dark:bg-amber-950/20'
+                    v.status === 'approved' ? 'bg-green-50 text-primary dark:bg-primary/20' : 'bg-amber-50 text-secondary dark:bg-secondary/20'
                   )}>{v.status}</span>
                 </td>
                 <td className="p-3 text-right">
@@ -1981,7 +1981,7 @@ function EcoImpactPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         <div className="bg-card border border-border p-5 rounded-xl shadow-sm">
-          <div className="flex justify-center text-3xl mb-1"><TreePine className="w-8 h-8 text-green-600" /></div>
+          <div className="flex justify-center text-3xl mb-1"><TreePine className="w-8 h-8 text-primary" /></div>
           <div className="text-2xl font-bold text-foreground">{impactStats.trees.toLocaleString()}</div>
           <div className="text-xs text-muted-foreground font-medium">Native Saplings Planted</div>
         </div>
@@ -2112,7 +2112,7 @@ function UserManagementPage() {
                 </td>
                 <td className="p-3">
                   <span className={cn('text-[10px] font-bold px-2 py-0.5 rounded-full uppercase',
-                    u.status === 'active' ? 'bg-green-50 text-green-600 dark:bg-green-950/20' : 'bg-red-50 text-red-600 dark:bg-red-950/20'
+                    u.status === 'active' ? 'bg-green-50 text-primary dark:bg-primary/20' : 'bg-red-50 text-red-600 dark:bg-red-950/20'
                   )}>{u.status}</span>
                 </td>
                 <td className="p-3 text-right">
@@ -2163,7 +2163,7 @@ function ContentReviewPage() {
               <div className="text-[10px] text-muted-foreground mt-2">Submitted: {a.time}</div>
             </div>
             <div className="flex-shrink-0 flex items-center gap-2">
-              <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white font-semibold text-xs h-8" onClick={() => handleApprove(a.id, a.item)}>
+              <Button size="sm" className="bg-primary hover:bg-primary text-white font-semibold text-xs h-8" onClick={() => handleApprove(a.id, a.item)}>
                 Approve
               </Button>
               <Button size="sm" variant="outline" className="border-red-200 text-red-500 hover:bg-red-50 text-xs h-8 font-semibold" onClick={() => handleReject(a.id, a.item)}>
@@ -2270,12 +2270,12 @@ function SystemStatusPage() {
             {state.systemStatus.map((s, idx) => (
               <div key={idx} className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className={cn('w-2 h-2 rounded-full', s.status === 'operational' ? 'bg-green-500 animate-pulse' : 'bg-amber-500 animate-pulse')} />
+                  <span className={cn('w-2 h-2 rounded-full', s.status === 'operational' ? 'bg-primary animate-pulse' : 'bg-secondary animate-pulse')} />
                   <span className="text-sm font-medium text-foreground">{s.service}</span>
                 </div>
                 <div className="text-xs text-muted-foreground flex items-center gap-2">
                   <span>{s.uptime} uptime</span>
-                  <span className={cn('px-2 py-0.5 rounded text-[10px] font-bold uppercase', s.status === 'operational' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700')}>{s.status}</span>
+                  <span className={cn('px-2 py-0.5 rounded text-[10px] font-bold uppercase', s.status === 'operational' ? 'bg-primary/10 text-primary' : 'bg-secondary/10 text-secondary')}>{s.status}</span>
                 </div>
               </div>
             ))}
@@ -2292,7 +2292,7 @@ function SystemStatusPage() {
                   <div className="text-muted-foreground text-[10px]">User: {l.user}</div>
                 </div>
                 <div className="text-right">
-                  <span className="text-[10px] text-green-600 bg-green-50 px-2 py-0.5 rounded font-bold">{l.status}</span>
+                  <span className="text-[10px] text-primary bg-green-50 px-2 py-0.5 rounded font-bold">{l.status}</span>
                   <div className="text-muted-foreground text-[9px] mt-0.5">{l.time}</div>
                 </div>
               </div>

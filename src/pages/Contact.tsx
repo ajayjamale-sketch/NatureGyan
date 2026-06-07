@@ -84,7 +84,7 @@ export default function Contact() {
                 ))}
 
                 <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
-                  <h4 className="font-semibold text-foreground mb-2"><Leaf className="inline w-5 h-5 mr-2 text-green-500" /> For NGOs & Educators</h4>
+                  <h4 className="font-semibold text-foreground mb-2"><Leaf className="inline w-5 h-5 mr-2 text-primary" /> For NGOs & Educators</h4>
                   <p className="text-sm text-muted-foreground">We offer special pricing and dedicated support for schools, universities, and environmental NGOs. Reach out to discuss your needs.</p>
                 </div>
               </div>
@@ -94,8 +94,8 @@ export default function Contact() {
                 <div className="rounded-2xl p-6 sm:p-8 bg-card border border-border">
                   {submitted ? (
                     <div className="text-center py-12">
-                      <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mx-auto mb-4">
-                        <CheckCircle2 className="w-8 h-8 text-green-600" />
+                      <div className="w-16 h-16 rounded-full bg-primary dark:bg-primary/30 flex items-center justify-center mx-auto mb-4">
+                        <CheckCircle2 className="w-8 h-8 text-primary" />
                       </div>
                       <h3 className="text-xl font-bold text-card-foreground mb-2">Message Sent!</h3>
                       <p className="text-muted-foreground mb-6">Thank you for reaching out. We'll get back to you within 24 hours.</p>
@@ -155,7 +155,7 @@ export default function Contact() {
         {/* Newsletter */}
         <section className="py-16 bg-muted/20">
           <div className="container mx-auto px-4 max-w-2xl text-center">
-            <h2 className="text-2xl font-bold text-foreground mb-3"><Leaf className="inline w-6 h-6 mr-2 text-green-500" /> Nature Digest Newsletter</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-3"><Leaf className="inline w-6 h-6 mr-2 text-primary" /> Nature Digest Newsletter</h2>
             <p className="text-muted-foreground mb-6">Weekly nature stories, conservation news, new course alerts, and eco-tips straight to your inbox.</p>
             <NewsletterForm />
           </div>

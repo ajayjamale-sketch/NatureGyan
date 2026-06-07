@@ -5,11 +5,11 @@ import { BookOpen, Leaf, Globe, Shield, Activity, FileText } from 'lucide-react'
 import { Link } from 'react-router-dom';
 
 const topics = [
-  { title: 'Biodiversity Courses', icon: Leaf, href: '/biodiversity-courses', color: 'bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-400', desc: 'Explore the richness of life on Earth.' },
-  { title: 'Climate Education', icon: Globe, href: '/climate-education', color: 'bg-sky-50 text-sky-600 dark:bg-sky-900/30 dark:text-sky-400', desc: 'Understand climate science and solutions.' },
-  { title: 'Wildlife Programs', icon: Shield, href: '/wildlife-programs', color: 'bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400', desc: 'Learn about wildlife conservation.' },
-  { title: 'Sustainability Hub', icon: Activity, href: '/sustainability-hub', color: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400', desc: 'Practical guides for an eco-friendly life.' },
-  { title: 'Research Library', icon: FileText, href: '/research-library', color: 'bg-purple-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400', desc: 'Access peer-reviewed papers and reports.' },
+  { title: 'Biodiversity Courses', icon: Leaf, href: '/biodiversity-courses', color: 'bg-green-50 text-primary dark:bg-primary/30 dark:text-primary', desc: 'Explore the richness of life on Earth.' },
+  { title: 'Climate Education', icon: Globe, href: '/climate-education', color: 'bg-sky-50 text-accent dark:bg-accent/30 dark:text-accent', desc: 'Understand climate science and solutions.' },
+  { title: 'Wildlife Programs', icon: Shield, href: '/wildlife-programs', color: 'bg-amber-50 text-secondary dark:bg-secondary/30 dark:text-secondary', desc: 'Learn about wildlife conservation.' },
+  { title: 'Sustainability Hub', icon: Activity, href: '/sustainability-hub', color: 'bg-emerald-50 text-primary dark:bg-primary/30 dark:text-primary', desc: 'Practical guides for an eco-friendly life.' },
+  { title: 'Research Library', icon: FileText, href: '/research-library', color: 'bg-purple-50 text-primary dark:bg-primary/30 dark:text-primary', desc: 'Access peer-reviewed papers and reports.' },
 ];
 
 export default function Learn() {

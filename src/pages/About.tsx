@@ -46,7 +46,7 @@ export default function About() {
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
               Reconnecting humans with{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-cyan-300">the natural world</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-300">the natural world</span>
             </h1>
             <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
               Founded in 2020, NatureGyan was born from a simple belief: that meaningful environmental education can inspire a generation of informed, passionate, and effective conservationists.
@@ -59,9 +59,9 @@ export default function About() {
           <div className="container mx-auto px-4 lg:px-6 max-w-7xl">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                { icon: Target, title: 'Our Mission', color: 'bg-green-50 dark:bg-green-900/20 text-green-600', text: 'To make world-class environmental education accessible to every curious mind — regardless of geography, background, or resources — and translate that knowledge into real-world conservation action.' },
-                { icon: Heart, title: 'Our Vision', color: 'bg-sky-50 dark:bg-sky-900/20 text-sky-600', text: 'A world where every person understands their relationship with nature, makes informed sustainability choices, and actively participates in protecting biodiversity for future generations.' },
-                { icon: Globe, title: 'Our Values', color: 'bg-amber-50 dark:bg-amber-900/20 text-amber-600', text: 'Science-first education, inclusive access, community-driven learning, measurable impact, and unwavering commitment to ecological integrity guide every decision we make.' },
+                { icon: Target, title: 'Our Mission', color: 'bg-green-50 dark:bg-primary/20 text-primary', text: 'To make world-class environmental education accessible to every curious mind — regardless of geography, background, or resources — and translate that knowledge into real-world conservation action.' },
+                { icon: Heart, title: 'Our Vision', color: 'bg-sky-50 dark:bg-accent/20 text-accent', text: 'A world where every person understands their relationship with nature, makes informed sustainability choices, and actively participates in protecting biodiversity for future generations.' },
+                { icon: Globe, title: 'Our Values', color: 'bg-amber-50 dark:bg-secondary/20 text-secondary', text: 'Science-first education, inclusive access, community-driven learning, measurable impact, and unwavering commitment to ecological integrity guide every decision we make.' },
               ].map(({ icon: Icon, title, color, text }) => (
                 <div key={title} className="p-6 rounded-2xl bg-card border border-border leaf-shadow">
                   <div className={`w-12 h-12 rounded-xl ${color} flex items-center justify-center mb-4`}>
@@ -103,7 +103,7 @@ export default function About() {
               {milestones.map((m, i) => (
                 <div key={m.year} className={`relative flex items-start gap-6 mb-8 ${i % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'}`}>
                   <div className={`flex-1 ${i % 2 === 0 ? 'sm:text-right sm:pr-8' : 'sm:text-left sm:pl-8'} pl-12 sm:pl-0`}>
-                    <div className="inline-block bg-primary text-primary-foreground text-xs font-bold rounded-full px-3 py-1 mb-2">{m.year}</div>
+                    <div className="inline-block bg-primary/10 text-primary-foreground text-xs font-bold rounded-full px-3 py-1 mb-2">{m.year}</div>
                     <p className="text-sm text-muted-foreground leading-relaxed">{m.event}</p>
                   </div>
                   <div className="absolute left-2 sm:left-1/2 w-5 h-5 rounded-full bg-primary border-4 border-background -translate-x-1/2 mt-1 flex-shrink-0" />

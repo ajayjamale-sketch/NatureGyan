@@ -66,7 +66,7 @@ export default function Register() {
     return score;
   };
   const strength = pwdStrength();
-  const strengthColors = ['', 'bg-red-400', 'bg-amber-400', 'bg-yellow-400', 'bg-green-500'];
+  const strengthColors = ['', 'bg-red-400', 'bg-secondary', 'bg-yellow-400', 'bg-primary'];
   const strengthLabels = ['', 'Weak', 'Fair', 'Good', 'Strong'];
 
   return (
@@ -93,7 +93,7 @@ export default function Register() {
             <p className="text-white/70 mb-8">Start your personalized environmental education journey today — completely free.</p>
             {['Free access to 20+ foundational courses', 'AI-powered species identification', 'Join eco-challenges & campaigns', 'Earn badges and certificates'].map(item => (
               <div key={item} className="flex items-center gap-3 mb-3">
-                <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
                 <span className="text-sm text-white/80">{item}</span>
               </div>
             ))}

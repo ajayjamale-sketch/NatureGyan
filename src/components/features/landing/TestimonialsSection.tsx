@@ -46,7 +46,7 @@ export default function TestimonialsSection() {
             </div>
             <div className="flex gap-0.5 mb-4">
               {Array.from({ length: TESTIMONIALS[activeIndex].rating }).map((_, i) => (
-                <Star key={i} className="w-4 h-4 text-amber-400 fill-current" />
+                <Star key={i} className="w-4 h-4 text-secondary fill-current" />
               ))}
             </div>
             <p className="text-card-foreground leading-relaxed text-base italic relative z-10">
@@ -91,7 +91,7 @@ export default function TestimonialsSection() {
             <div key={t.id} className="p-5 rounded-xl bg-muted/50 border border-border">
               <div className="flex gap-0.5 mb-3">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="w-3 h-3 text-amber-400 fill-current" />
+                  <Star key={i} className="w-3 h-3 text-secondary fill-current" />
                 ))}
               </div>
               <p className="text-sm text-muted-foreground italic mb-4 line-clamp-3">"{t.content}"</p>

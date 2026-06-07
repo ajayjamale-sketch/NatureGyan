@@ -21,7 +21,7 @@ export default function NotFound() {
         </div>
 
         {/* Illustration */}
-        <div className="flex justify-center text-8xl mb-6"><Leaf className="w-24 h-24 text-green-500" /></div>
+        <div className="flex justify-center text-8xl mb-6"><Leaf className="w-24 h-24 text-primary" /></div>
 
         <h1 className="text-6xl font-bold text-foreground mb-4">404</h1>
         <h2 className="text-2xl font-semibold text-foreground mb-3">Page Not Found</h2>

@@ -23,7 +23,7 @@ export default function HeroSection() {
       <div className="absolute top-24 right-4 md:right-12 z-10 hidden sm:block">
         <div className="glass rounded-2xl px-4 py-3 text-white text-sm font-medium animate-fade-in delay-500">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             2.4M+ Active Learners
           </div>
         </div>
@@ -34,14 +34,14 @@ export default function HeroSection() {
         <div className="max-w-3xl">
           {/* Tag */}
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-white/90 text-sm font-medium mb-6 animate-fade-in-up">
-            <Leaf className="w-4 h-4 text-green-400" />
+            <Leaf className="w-4 h-4 text-primary" />
             AI-Powered Environmental Education Platform
           </div>
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6 animate-fade-in-up delay-100">
             Discover,{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">
               Learn
             </span>{' '}
             & Protect{' '}
@@ -84,7 +84,7 @@ export default function HeroSection() {
               { icon: Leaf, text: 'Real Impact Tracking' },
             ].map(({ icon: Icon, text }) => (
               <div key={text} className="flex items-center gap-2 text-white/70 text-sm">
-                <Icon className="w-4 h-4 text-green-400" />
+                <Icon className="w-4 h-4 text-primary" />
                 {text}
               </div>
             ))}

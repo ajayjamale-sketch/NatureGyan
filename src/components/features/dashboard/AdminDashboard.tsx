@@ -77,9 +77,9 @@ export default function AdminDashboard() {
 
   const stats = [
     { icon: Users, label: 'Total Users', value: '2.4M', change: '+48K this month', color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30' },
-    { icon: BookOpen, label: 'Courses Live', value: String(state.courses.length + 500), change: 'Tracked live', color: 'text-green-600 bg-green-100 dark:bg-green-900/30' },
-    { icon: FileText, label: 'Action Items', value: String(state.flaggedContent.length), change: 'Moderation pending', color: 'text-amber-600 bg-amber-100 dark:bg-amber-900/30' },
-    { icon: Activity, label: 'Platform Health', value: '99.8%', change: 'All systems normal', color: 'text-emerald-600 bg-emerald-100 dark:bg-emerald-900/30' },
+    { icon: BookOpen, label: 'Courses Live', value: String(state.courses.length + 500), change: 'Tracked live', color: 'text-primary bg-primary/10 dark:bg-primary/30' },
+    { icon: FileText, label: 'Action Items', value: String(state.flaggedContent.length), change: 'Moderation pending', color: 'text-secondary bg-secondary/10 dark:bg-secondary/30' },
+    { icon: Activity, label: 'Platform Health', value: '99.8%', change: 'All systems normal', color: 'text-primary bg-primary/10 dark:bg-primary/30' },
   ];
 
   return (
@@ -139,7 +139,7 @@ export default function AdminDashboard() {
           <div className="rounded-xl p-5 bg-card border border-border">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-foreground">Moderation / Review Queue</h3>
-              <span className="text-xs text-amber-600 bg-amber-100 dark:bg-amber-900/30 rounded-full px-2.5 py-0.5 font-semibold">{state.flaggedContent.length} pending</span>
+              <span className="text-xs text-secondary bg-secondary/10 dark:bg-secondary/30 rounded-full px-2.5 py-0.5 font-semibold">{state.flaggedContent.length} pending</span>
             </div>
             <div className="space-y-3">
               {state.flaggedContent.map((action) => (
@@ -161,7 +161,7 @@ export default function AdminDashboard() {
                     <button
                       onClick={() => handleAction(action.id, action.item, true)}
                       disabled={processingAction === action.id}
-                      className="w-7 h-7 rounded bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition-colors disabled:opacity-50"
+                      className="w-7 h-7 rounded bg-primary/10 text-primary flex items-center justify-center hover:bg-primary transition-colors disabled:opacity-50"
                       title="Approve"
                     >
                       <CheckCircle className="w-4 h-4" />
@@ -263,13 +263,13 @@ export default function AdminDashboard() {
           {/* System Status */}
           <div className="rounded-xl p-5 bg-card border border-border">
             <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-              <Activity className="w-4 h-4 text-green-500" /> Platform Status
+              <Activity className="w-4 h-4 text-primary" /> Platform Status
             </h3>
             <div className="space-y-3">
               {state.systemStatus.slice(0, 4).map(s => (
                 <div key={s.service} className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className={cn('w-2 h-2 rounded-full flex-shrink-0', s.status === 'operational' ? 'bg-green-500' : 'bg-amber-500')} />
+                    <span className={cn('w-2 h-2 rounded-full flex-shrink-0', s.status === 'operational' ? 'bg-primary' : 'bg-secondary')} />
                     <span className="text-sm text-muted-foreground">{s.service}</span>
                   </div>
                   <span className="text-xs font-semibold text-foreground">{s.uptime}</span>

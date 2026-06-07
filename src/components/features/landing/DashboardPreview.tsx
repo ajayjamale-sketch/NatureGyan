@@ -39,7 +39,7 @@ export default function DashboardPreview() {
           <div className="flex items-center gap-2 px-4 py-3 bg-muted/50 border-b border-border">
             <div className="w-3 h-3 rounded-full bg-red-400" />
             <div className="w-3 h-3 rounded-full bg-yellow-400" />
-            <div className="w-3 h-3 rounded-full bg-green-400" />
+            <div className="w-3 h-3 rounded-full bg-primary" />
             <span className="ml-4 text-xs text-muted-foreground font-mono">naturegyan.in/dashboard</span>
           </div>
 
@@ -50,10 +50,10 @@ export default function DashboardPreview() {
                 {/* Stats Row */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {[
-                    { icon: BookOpen, label: 'Courses', value: '8', sub: 'completed', color: 'text-green-600 bg-green-50 dark:bg-green-900/20' },
-                    { icon: Leaf, label: 'Eco Points', value: '2,450', sub: 'earned', color: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20' },
-                    { icon: Award, label: 'Badges', value: '12', sub: 'unlocked', color: 'text-amber-600 bg-amber-50 dark:bg-amber-900/20' },
-                    { icon: Target, label: 'Challenges', value: '5', sub: 'active', color: 'text-sky-600 bg-sky-50 dark:bg-sky-900/20' },
+                    { icon: BookOpen, label: 'Courses', value: '8', sub: 'completed', color: 'text-primary bg-green-50 dark:bg-primary/20' },
+                    { icon: Leaf, label: 'Eco Points', value: '2,450', sub: 'earned', color: 'text-primary bg-emerald-50 dark:bg-primary/20' },
+                    { icon: Award, label: 'Badges', value: '12', sub: 'unlocked', color: 'text-secondary bg-amber-50 dark:bg-secondary/20' },
+                    { icon: Target, label: 'Challenges', value: '5', sub: 'active', color: 'text-accent bg-sky-50 dark:bg-accent/20' },
                   ].map(({ icon: Icon, label, value, sub, color }) => (
                     <div key={label} className="rounded-xl p-3 bg-background border border-border">
                       <div className={`w-8 h-8 rounded-lg ${color} flex items-center justify-center mb-2`}>
@@ -98,9 +98,9 @@ export default function DashboardPreview() {
                   <h4 className="font-semibold text-sm text-foreground mb-3">Active Courses</h4>
                   <div className="space-y-3">
                     {[
-                      { name: 'Biodiversity Fundamentals', progress: 65, color: 'bg-green-500' },
-                      { name: 'Climate Change & Our Future', progress: 30, color: 'bg-sky-500' },
-                      { name: 'Sustainable Living Practices', progress: 85, color: 'bg-amber-500' },
+                      { name: 'Biodiversity Fundamentals', progress: 65, color: 'bg-primary' },
+                      { name: 'Climate Change & Our Future', progress: 30, color: 'bg-accent' },
+                      { name: 'Sustainable Living Practices', progress: 85, color: 'bg-secondary' },
                     ].map((course) => (
                       <div key={course.name}>
                         <div className="flex justify-between text-xs mb-1">
@@ -122,7 +122,7 @@ export default function DashboardPreview() {
               {/* Right Column */}
               <div className="space-y-4">
                 {/* Eco Score */}
-                <div className="rounded-xl p-4 bg-gradient-to-br from-green-600 to-emerald-700 text-white">
+                <div className="rounded-xl p-4 bg-gradient-to-br from-primary to-primary text-white">
                   <h4 className="font-semibold text-sm text-white/80 mb-2">Sustainability Score</h4>
                   <div className="flex items-center justify-center py-2">
                     <div className="relative">
@@ -145,7 +145,7 @@ export default function DashboardPreview() {
                   <h4 className="font-semibold text-sm text-foreground mb-3">Recent Badges</h4>
                   <div className="grid grid-cols-3 gap-2">
                     {[
-                      { emoji: <Sprout className="w-5 h-5 text-green-500" />, name: 'First Steps' },
+                      { emoji: <Sprout className="w-5 h-5 text-primary" />, name: 'First Steps' },
                       { emoji: '🌳', name: 'Tree Planter' },
                       { emoji: <Bug className="w-5 h-5 text-blue-500" />, name: 'Bird Watcher' },
                       { emoji: '⚡', name: 'Eco Warrior' },
@@ -165,7 +165,7 @@ export default function DashboardPreview() {
                   <h4 className="font-semibold text-sm text-foreground mb-3">My Eco Impact</h4>
                   <div className="space-y-3 text-sm">
                     {[
-                      { label: <span className="flex items-center gap-1"><TreePine className="w-4 h-4 text-green-600" /> Trees Planted</span>, value: '12' },
+                      { label: <span className="flex items-center gap-1"><TreePine className="w-4 h-4 text-primary" /> Trees Planted</span>, value: '12' },
                       { label: '♻️ CO₂ Saved', value: '340 kg' },
                       { label: <span className="flex items-center gap-1"><Droplet className="w-4 h-4 text-blue-600" /> Water Conserved</span>, value: '1,200 L' },
                       { label: '🦁 Species Identified', value: '47' },

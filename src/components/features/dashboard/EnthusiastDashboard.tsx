@@ -85,10 +85,10 @@ export default function EnthusiastDashboard() {
   };
 
   const stats = [
-    { icon: Eye, label: 'Species Identified', value: String(state.sightings.length), change: 'Logged in DB', color: 'text-green-600 bg-green-100 dark:bg-green-900/30' },
+    { icon: Eye, label: 'Species Identified', value: String(state.sightings.length), change: 'Logged in DB', color: 'text-primary bg-primary/10 dark:bg-primary/30' },
     { icon: Camera, label: 'Observations Logged', value: String(state.sightings.length + 620), change: '+62 this month', color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30' },
-    { icon: Map, label: 'Locations Visited', value: '34', change: '5 new this year', color: 'text-amber-600 bg-amber-100 dark:bg-amber-900/30' },
-    { icon: Trophy, label: 'Eco Points', value: user.ecoPoints.toLocaleString(), change: 'Level 3 Explorer', color: 'text-purple-600 bg-purple-100 dark:bg-purple-900/30' },
+    { icon: Map, label: 'Locations Visited', value: '34', change: '5 new this year', color: 'text-secondary bg-secondary/10 dark:bg-secondary/30' },
+    { icon: Trophy, label: 'Eco Points', value: user.ecoPoints.toLocaleString(), change: 'Level 3 Explorer', color: 'text-primary bg-primary/10 dark:bg-primary/30' },
   ];
 
   return (
@@ -159,7 +159,7 @@ export default function EnthusiastDashboard() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-semibold text-foreground truncate">{s.name}</span>
-                      {s.rare && <span className="text-[10px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full font-bold flex-shrink-0">Rare</span>}
+                      {s.rare && <span className="text-[10px] bg-secondary/10 text-secondary px-1.5 py-0.5 rounded-full font-bold flex-shrink-0">Rare</span>}
                     </div>
                     <div className="text-xs text-muted-foreground">{s.category} · {s.location} · {s.date}</div>
                   </div>

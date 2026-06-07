@@ -355,9 +355,9 @@ export default function TeacherDashboard() {
 
   const stats = [
     { icon: Users, label: 'Total Students', value: String(state.students.length + 1140), change: 'Syncing live', color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30' },
-    { icon: BookOpen, label: 'My Live Courses', value: String(myCourses.length), change: '1 draft pending', color: 'text-green-600 bg-green-100 dark:bg-green-900/30' },
-    { icon: Star, label: 'Average Rating', value: '4.8', change: 'Excellent feedback', color: 'text-amber-600 bg-amber-100 dark:bg-amber-900/30' },
-    { icon: BarChart3, label: 'Completion Rate', value: '74%', change: '+8% vs last month', color: 'text-purple-600 bg-purple-100 dark:bg-purple-900/30' },
+    { icon: BookOpen, label: 'My Live Courses', value: String(myCourses.length), change: '1 draft pending', color: 'text-primary bg-primary/10 dark:bg-primary/30' },
+    { icon: Star, label: 'Average Rating', value: '4.8', change: 'Excellent feedback', color: 'text-secondary bg-secondary/10 dark:bg-secondary/30' },
+    { icon: BarChart3, label: 'Completion Rate', value: '74%', change: '+8% vs last month', color: 'text-primary bg-primary/10 dark:bg-primary/30' },
   ];
 
   return (
@@ -433,7 +433,7 @@ export default function TeacherDashboard() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-semibold text-foreground truncate">{s.name}</span>
-                        <span className={cn('text-[10px] px-2 py-0.5 rounded-full font-bold capitalize', s.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700')}>{s.status}</span>
+                        <span className={cn('text-[10px] px-2 py-0.5 rounded-full font-bold capitalize', s.status === 'active' ? 'bg-primary/10 text-primary' : 'bg-secondary/10 text-secondary')}>{s.status}</span>
                         {report.avgGrade !== 'N/A' && <span className="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">⭐ Avg: {report.avgGrade}</span>}
                       </div>
                       <div className="text-xs text-muted-foreground">{s.course} · {s.lastActive}</div>
@@ -631,7 +631,7 @@ export default function TeacherDashboard() {
                 <div>
                   <div className="font-medium">{student.name}</div>
                   <div className="text-xs text-muted-foreground">{submission ? `Submitted: ${new Date(submission.submittedAt).toLocaleDateString()}` : 'Not submitted'}</div>
-                  {submission?.grade !== undefined && <div className="text-sm text-green-600">Grade: {submission.grade}</div>}
+                  {submission?.grade !== undefined && <div className="text-sm text-primary">Grade: {submission.grade}</div>}
                 </div>
                 <Button size="sm" onClick={() => { openGradeModal(selectedAssignment, student); setSelectedAssignment(null); }}>Grade / Edit</Button>
               </div>

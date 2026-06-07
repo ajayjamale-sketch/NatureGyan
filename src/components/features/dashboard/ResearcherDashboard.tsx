@@ -228,10 +228,10 @@ export default function ResearcherDashboard() {
   };
 
   const stats = [
-    { icon: FileText, label: 'Papers Published', value: String(myPapers.length), change: 'Tracked live', color: 'text-purple-600 bg-purple-100 dark:bg-purple-900/30' },
+    { icon: FileText, label: 'Papers Published', value: String(myPapers.length), change: 'Tracked live', color: 'text-primary bg-primary/10 dark:bg-primary/30' },
     { icon: Eye, label: 'Total Citations', value: '1,240', change: '+89 this month', color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30' },
-    { icon: Users, label: 'Active Collaborators', value: networkJoined ? '19' : '18', change: networkJoined ? '+1 new member' : '4 new this year', color: 'text-green-600 bg-green-100 dark:bg-green-900/30' },
-    { icon: Star, label: 'H-Index', value: '14', change: 'Top 5% in field', color: 'text-amber-600 bg-amber-100 dark:bg-amber-900/30' },
+    { icon: Users, label: 'Active Collaborators', value: networkJoined ? '19' : '18', change: networkJoined ? '+1 new member' : '4 new this year', color: 'text-primary bg-primary/10 dark:bg-primary/30' },
+    { icon: Star, label: 'H-Index', value: '14', change: 'Top 5% in field', color: 'text-secondary bg-secondary/10 dark:bg-secondary/30' },
   ];
 
   return (
@@ -317,7 +317,7 @@ export default function ResearcherDashboard() {
                         <span>{pub.year}</span>
                         <span>•</span>
                         <span>{pub.downloads} downloads</span>
-                        <span className="px-1.5 py-0.5 bg-green-50 text-green-700 font-semibold rounded capitalize">{pub.status}</span>
+                        <span className="px-1.5 py-0.5 bg-green-50 text-primary font-semibold rounded capitalize">{pub.status}</span>
                       </div>
                     </div>
                     <div className="flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
@@ -406,7 +406,7 @@ export default function ResearcherDashboard() {
               )}
             </div>
             {networkJoined && (
-              <div className="mt-3 pt-3 border-t border-border text-xs text-green-600 flex items-center gap-1">
+              <div className="mt-3 pt-3 border-t border-border text-xs text-primary flex items-center gap-1">
                 <CheckCircle className="w-3 h-3" /> You are a member of the Global Research Network
               </div>
             )}

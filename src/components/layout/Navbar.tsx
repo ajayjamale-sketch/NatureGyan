@@ -64,7 +64,7 @@ export default function Navbar() {
           />
           <div className="leading-tight">
             <span className="font-bold text-lg tracking-tight block leading-none">
-              <span className={isTransparent ? 'text-green-400' : 'text-primary'}>Nature</span>
+              <span className={isTransparent ? 'text-primary' : 'text-primary'}>Nature</span>
               <span className={isTransparent ? 'text-white' : 'text-foreground'}>Gyan</span>
             </span>
             <span className={`text-[9px] leading-none hidden sm:block ${isTransparent ? 'text-white/50' : 'text-muted-foreground'}`}>AI for Environmental Education</span>
@@ -80,7 +80,7 @@ export default function Navbar() {
               className={cn(
                 'px-3.5 py-2 rounded-lg text-sm font-medium transition-colors',
                 isActive(link.href)
-                  ? isTransparent ? 'text-green-400 bg-white/10' : 'text-primary bg-primary/10'
+                  ? isTransparent ? 'text-primary bg-white/10' : 'text-primary bg-primary/10'
                   : isTransparent ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
               )}
             >
