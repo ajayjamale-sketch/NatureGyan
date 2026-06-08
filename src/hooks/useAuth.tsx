@@ -28,7 +28,7 @@ export const DEMO_USERS: Record<string, User> = {
     name: 'Dr. Ananya Krishnamurthy',
     email: 'ananya.teacher@naturegyan.in',
     role: 'teacher',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b5e5?w=100&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1777471369951-681215f15a71?q=80&w=1165&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     bio: 'Biology teacher with 12 years experience in environmental science education. Passionate about making ecology accessible to students.',
     location: 'Delhi, India',
     joinedAt: '2024-08-01',

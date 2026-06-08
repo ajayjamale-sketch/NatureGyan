@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Leaf, Award, Target, TrendingUp, ChevronRight, Calendar, Play, X, User, Mail, Users, Globe, Image as ImageIcon , TreePine , Droplet , Check , Bug } from 'lucide-react';
+import { BookOpen, Leaf, Award, Target, TrendingUp, ChevronRight, Calendar, Play, X, User, Mail, Users, Globe, Image as ImageIcon , TreePine , Droplet , Check , Bug, Cat, Recycle } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
@@ -341,9 +341,9 @@ export default function StudentDashboard() {
             <div className="space-y-3">
               {[
                 { emoji: <TreePine className="w-8 h-8 text-primary" />, label: 'Trees Planted', value: '12' },
-                { emoji: '♻️', label: 'CO₂ Saved', value: '340 kg' },
+                { emoji: <Recycle />, label: 'CO₂ Saved', value: '340 kg' },
                 { emoji: <Droplet className="w-8 h-8 text-blue-500" />, label: 'Water Conserved', value: '1,200 L' },
-                { emoji: '🦁', label: 'Species Identified', value: String(state.sightings.length) },
+                { emoji: <Cat className="w-8 h-8 text-red-500" />, label: 'Species Identified', value: String(state.sightings.length) },
               ].map(({ emoji, label, value }) => (
                 <div key={label} className="flex items-center justify-between">
                   <div className="flex items-center gap-2">

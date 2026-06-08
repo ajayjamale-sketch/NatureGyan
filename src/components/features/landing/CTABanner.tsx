@@ -1,4 +1,4 @@
-import { ArrowRight, Leaf, Users, Globe } from 'lucide-react';
+import { ArrowRight, Leaf, Users, Globe, ThumbsUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -48,7 +48,7 @@ export default function CTABanner() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white/40 text-white hover:bg-white/10"
+                  className="bg-white/10 text-white border-white/40 hover:bg-white/20"
                   onClick={() => navigate('/contact')}
                 >
                   Talk to Sales
@@ -61,7 +61,7 @@ export default function CTABanner() {
                 { icon: Leaf, value: '500+', label: 'Expert Courses', desc: 'Certified programs in biodiversity, climate, and wildlife' },
                 { icon: Users, value: '2.4M+', label: 'Active Learners', desc: 'Students, teachers, and researchers worldwide' },
                 { icon: Globe, value: '180+', label: 'Countries', desc: 'Global community of nature enthusiasts' },
-                { icon: Leaf, value: '94%', label: 'Satisfaction', desc: 'Learners report measurable environmental knowledge gain' },
+                { icon: ThumbsUp, value: '94%', label: 'Satisfaction', desc: 'Learners report measurable environmental knowledge gain' },
               ].map(({ icon: Icon, value, label, desc }) => (
                 <div key={label} className="rounded-2xl bg-white/10 backdrop-blur-sm p-5 border border-white/20">
                   <Icon className="w-6 h-6 text-white/70 mb-3" />
