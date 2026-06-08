@@ -48,10 +48,10 @@ export default function Contact() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-24 pb-16 gradient-hero text-white text-center">
+        <section className="pt-32 pb-16 bg-slate-50 dark:bg-slate-900/50 text-center border-b border-border">
           <div className="container mx-auto px-4 max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4">Get in Touch</h1>
-            <p className="text-xl text-white/80">Have a question, partnership idea, or just want to say hi? We'd love to hear from you.</p>
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-foreground">Get in Touch</h1>
+            <p className="text-xl text-muted-foreground">Have a question, partnership idea, or just want to say hi? We'd love to hear from you.</p>
           </div>
         </section>
 

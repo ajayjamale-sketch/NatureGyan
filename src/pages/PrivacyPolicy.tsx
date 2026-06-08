@@ -73,13 +73,13 @@ export default function PrivacyPolicy() {
     <div className="min-h-screen">
       <Navbar />
       <main>
-        <section className="pt-24 pb-12 gradient-hero text-white text-center">
+        <section className="pt-32 pb-16 bg-slate-50 dark:bg-slate-900/50 text-center border-b border-border">
           <div className="container mx-auto px-4 max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm font-medium mb-4">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-medium mb-4">
               <Shield className="w-3.5 h-3.5" /> Legal
             </div>
-            <h1 className="text-4xl font-bold mb-4">Privacy Policy</h1>
-            <p className="text-white/80">Your privacy matters to us. This policy explains how we collect, use, and protect your information.</p>
+            <h1 className="text-4xl font-bold mb-4 text-foreground">Privacy Policy</h1>
+            <p className="text-muted-foreground">Your privacy matters to us. This policy explains how we collect, use, and protect your information.</p>
           </div>
         </section>
 

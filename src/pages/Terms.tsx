@@ -33,13 +33,13 @@ export default function Terms() {
     <div className="min-h-screen">
       <Navbar />
       <main>
-        <section className="pt-24 pb-12 gradient-hero text-white text-center">
+        <section className="pt-32 pb-16 bg-slate-50 dark:bg-slate-900/50 text-center border-b border-border">
           <div className="container mx-auto px-4 max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm font-medium mb-4">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-medium mb-4">
               <FileText className="w-3.5 h-3.5" /> Legal
             </div>
-            <h1 className="text-4xl font-bold mb-4">Terms of Service</h1>
-            <p className="text-white/80">Please read these terms carefully before using NatureGyan.</p>
+            <h1 className="text-4xl font-bold mb-4 text-foreground">Terms of Service</h1>
+            <p className="text-muted-foreground">Please read these terms carefully before using NatureGyan.</p>
           </div>
         </section>
 

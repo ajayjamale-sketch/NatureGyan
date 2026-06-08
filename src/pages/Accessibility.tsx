@@ -4,6 +4,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
 import { Eye, Mail, Calendar } from 'lucide-react';
+import { toast } from 'sonner';
 
 const accessibilitySections = [
   {
@@ -41,13 +42,13 @@ export default function Accessibility() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-32 pb-16 gradient-hero text-white text-center">
+        <section className="pt-32 pb-16 bg-slate-50 dark:bg-slate-900/50 text-center border-b border-border">
           <div className="container mx-auto px-4 max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm font-medium mb-4">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-medium mb-4">
               <Eye className="w-3.5 h-3.5" /> Statement
             </div>
-            <h1 className="text-4xl font-bold mb-4">Accessibility Statement</h1>
-            <p className="text-white/80">Making environmental education inclusive and accessible to everyone.</p>
+            <h1 className="text-4xl font-bold mb-4 text-foreground">Accessibility Statement</h1>
+            <p className="text-muted-foreground">Making environmental education inclusive and accessible to everyone.</p>
           </div>
         </section>
 
@@ -76,7 +77,13 @@ export default function Accessibility() {
             <p className="text-muted-foreground leading-relaxed max-w-xl mx-auto text-sm">
               If you require assistance or want to report an issue, please email our support address. We aim to respond within 2 business days.
             </p>
-            <div className="inline-flex items-center gap-2.5 bg-card border border-border px-5 py-3 rounded-xl shadow-sm">
+            <div 
+              className="inline-flex items-center gap-2.5 bg-card border border-border px-5 py-3 rounded-xl shadow-sm cursor-pointer hover:border-primary/50 transition-colors"
+              onClick={() => {
+                navigator.clipboard.writeText('accessibility@naturegyan.in');
+                toast.success('Email copied to clipboard: accessibility@naturegyan.in');
+              }}
+            >
               <Mail className="w-4 h-4 text-primary" />
               <span className="text-sm font-semibold text-foreground">accessibility@naturegyan.in</span>
             </div>

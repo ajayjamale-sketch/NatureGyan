@@ -1,10 +1,13 @@
+import { useState, useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
-import { Leaf, Clock, Star, ArrowRight, PlayCircle, BookOpen, Users, Medal, ScanFace, Globe, Sprout } from 'lucide-react';
+import { Leaf, Clock, Star, ArrowRight, PlayCircle, BookOpen, Users, Medal, ScanFace, Globe, Sprout, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
+import { toast } from 'sonner';
 
 const courses = [
   { title: 'Introduction to Plant Biology', duration: '4 Weeks', rating: '4.8', img: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&auto=format', students: '12.4k' },
@@ -16,24 +19,76 @@ const courses = [
 ];
 
 const categories = [
-  { name: 'Marine Biology', icon: Globe, count: 24, color: 'bg-[#0EA5E9]/10 text-[#0EA5E9]' },
-  { name: 'Forestry & Botany', icon: Sprout, count: 38, color: 'bg-[#15803D]/10 text-[#15803D]' },
-  { name: 'Wildlife Conservation', icon: ScanFace, count: 19, color: 'bg-[#92400E]/10 text-[#92400E]' },
+  { name: 'Marine Biology', icon: Globe, count: 24, color: 'bg-[#0EA5E9]/10 text-[#0EA5E9] dark:bg-[#0EA5E9]/20 dark:text-[#7DD3FC]' },
+  { name: 'Forestry & Botany', icon: Sprout, count: 38, color: 'bg-[#15803D]/10 text-[#15803D] dark:bg-[#22C55E]/20 dark:text-[#86EFAC]' },
+  { name: 'Wildlife Conservation', icon: ScanFace, count: 19, color: 'bg-[#92400E]/10 text-[#92400E] dark:bg-[#F97316]/20 dark:text-[#FDBA74]' },
 ];
 
 export default function BiodiversityCourses() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
+  const [introModalOpen, setIntroModalOpen] = useState(false);
+  const [enrollModalOpen, setEnrollModalOpen] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState('');
+  const [enrollForm, setEnrollForm] = useState({ name: '', email: '', comments: '' });
+
+  // Sync user info to form when authenticated user details are available
+  useEffect(() => {
+    if (user) {
+      setEnrollForm(prev => ({
+        ...prev,
+        name: user.name || '',
+        email: user.email || ''
+      }));
+    }
+  }, [user]);
+
+  // Handle escape key to close modals
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIntroModalOpen(false);
+        setEnrollModalOpen(false);
+      }
+    };
+    if (introModalOpen || enrollModalOpen) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
+  }, [introModalOpen, enrollModalOpen]);
+
+  const handleProtectedNavigation = (path: string) => {
+    navigate(isAuthenticated ? path : '/login');
+  };
+
+  const handleEnrollClick = (courseTitle: string) => {
+    setSelectedCourse(courseTitle);
+    setEnrollModalOpen(true);
+  };
+
+  const handleEnrollSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success(`Successfully enrolled in "${selectedCourse}"!`);
+    setEnrollModalOpen(false);
+    // Reset comments
+    setEnrollForm(prev => ({ ...prev, comments: '' }));
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Navbar />
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 overflow-hidden">
-          <div className="absolute inset-0 bg-primary/5 dark:bg-primary/10 -z-10" />
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-primary text-primary-foreground rounded-2xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-primary text-primary-foreground rounded-2xl flex items-center justify-center mb-6 shadow-lg">
                 <Leaf className="w-8 h-8" />
               </div>
               <h1 className="text-4xl md:text-6xl font-extrabold mb-6 text-foreground tracking-tight">
@@ -45,8 +100,8 @@ export default function BiodiversityCourses() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   size="lg" 
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground h-12 px-8 text-lg rounded-full border-0"
-                  onClick={() => navigate(isAuthenticated ? '/dashboard' : '/login')}
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground h-12 px-8 text-lg rounded-full shadow-md hover:shadow-lg transition-all"
+                  onClick={() => handleProtectedNavigation('/dashboard')}
                 >
                   Explore Courses
                 </Button>
@@ -54,7 +109,7 @@ export default function BiodiversityCourses() {
                   size="lg" 
                   variant="outline" 
                   className="h-12 px-8 text-lg rounded-full border-border text-foreground bg-background hover:bg-muted"
-                  onClick={() => navigate(isAuthenticated ? '/dashboard' : '/login')}
+                  onClick={() => setIntroModalOpen(true)}
                 >
                   <PlayCircle className="w-5 h-5 mr-2" /> Watch Intro
                 </Button>
@@ -74,7 +129,7 @@ export default function BiodiversityCourses() {
               <Button 
                 variant="ghost" 
                 className="hidden sm:flex text-primary font-semibold hover:text-primary/85 hover:bg-primary/10"
-                onClick={() => navigate(isAuthenticated ? '/dashboard' : '/login')}
+                onClick={() => handleProtectedNavigation('/dashboard')}
               >
                 View All <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
@@ -85,7 +140,7 @@ export default function BiodiversityCourses() {
                 <div key={i} className="bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 group flex flex-col h-full hover:-translate-y-1">
                   <div className="h-48 overflow-hidden relative flex-shrink-0 bg-muted">
                     <img src={c.img} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-                    <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-foreground flex items-center gap-1">
+                    <div className="absolute top-4 left-4 bg-background/90 dark:bg-card/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-foreground flex items-center gap-1 shadow-sm">
                       <Star className="w-3 h-3 text-yellow-500 fill-yellow-500" /> {c.rating}
                     </div>
                   </div>
@@ -96,8 +151,8 @@ export default function BiodiversityCourses() {
                       <span className="flex items-center gap-1"><Users className="w-4 h-4" /> {c.students}</span>
                     </div>
                     <Button 
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground border-0"
-                      onClick={() => navigate(isAuthenticated ? '/dashboard' : '/login')}
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm hover:shadow-md transition-all"
+                      onClick={() => handleEnrollClick(c.title)}
                     >
                       Enroll Now <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
@@ -121,15 +176,15 @@ export default function BiodiversityCourses() {
                   <div 
                     key={i} 
                     className="bg-card border border-border p-8 rounded-2xl hover:border-primary/50 transition-colors cursor-pointer group"
-                    onClick={() => navigate(isAuthenticated ? '/dashboard' : '/login')}
+                    onClick={() => handleProtectedNavigation('/dashboard')}
                   >
                     <div className={`w-14 h-14 ${cat.color} rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
                       <Icon className="w-7 h-7" />
                     </div>
                     <h3 className="text-xl font-bold text-foreground mb-2">{cat.name}</h3>
                     <p className="text-muted-foreground text-sm mb-4">{cat.count} Specialized Courses</p>
-                    <span className="text-primary font-semibold text-sm flex items-center justify-center">
-                      Browse Path <ArrowRight className="w-4 h-4 ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                    <span className="text-primary font-semibold text-sm flex items-center justify-center gap-1">
+                      Browse Path <ArrowRight className="w-4 h-4 transition-all group-hover:translate-x-1" />
                     </span>
                   </div>
                 );
@@ -144,7 +199,11 @@ export default function BiodiversityCourses() {
             <div className="flex flex-col md:flex-row items-center gap-16">
               <div className="md:w-1/2 relative">
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 blur-3xl rounded-full -z-10" />
-                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&auto=format" alt="Nature Learning" className="rounded-2xl shadow-2xl" />
+                <img 
+                  src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&auto=format" 
+                  alt="Student exploring nature with field notebook" 
+                  className="rounded-2xl shadow-2xl" 
+                />
                 <div className="absolute -bottom-6 -right-6 bg-card border border-border p-4 rounded-xl shadow-xl flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
                     <Medal className="w-6 h-6 text-primary" />
@@ -199,6 +258,151 @@ export default function BiodiversityCourses() {
       </main>
       <Footer />
       <ScrollToTop />
+
+      {/* Intro Video Modal */}
+      {introModalOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-all duration-300"
+          onClick={(e) => e.target === e.currentTarget && setIntroModalOpen(false)}
+        >
+          <div className="bg-card rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden border border-border animate-in zoom-in-95 fade-in duration-200">
+            <div className="flex justify-between items-center p-4 border-b border-border bg-muted/30">
+              <h3 className="text-xl font-bold text-foreground flex items-center gap-2">
+                <PlayCircle className="w-5 h-5 text-primary" /> 
+                Welcome to Biodiversity Academy
+              </h3>
+              <button 
+                onClick={() => setIntroModalOpen(false)}
+                className="p-1 rounded-full hover:bg-muted transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-6 h-6 text-muted-foreground hover:text-foreground" />
+              </button>
+            </div>
+            <div className="aspect-video w-full bg-black">
+              <iframe 
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/GnYyVlFpW_0?autoplay=1&rel=0"
+                title="Introduction to Biodiversity"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <div className="p-5 bg-card">
+              <p className="text-muted-foreground">
+                Discover how our AI-powered platform helps you learn about ecosystems, species identification, and conservation strategies.
+                Get ready to dive into the fascinating world of biodiversity!
+              </p>
+              <div className="mt-4 flex justify-end">
+                <Button 
+                  onClick={() => setIntroModalOpen(false)}
+                  variant="outline"
+                  className="mr-2"
+                >
+                  Close
+                </Button>
+                <Button 
+                  onClick={() => {
+                    setIntroModalOpen(false);
+                    handleProtectedNavigation('/dashboard');
+                  }}
+                  className="bg-primary hover:bg-primary/90"
+                >
+                  Start Learning Now
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Course Enrollment Modal */}
+      {enrollModalOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-all duration-300"
+          onClick={(e) => e.target === e.currentTarget && setEnrollModalOpen(false)}
+        >
+          <div className="bg-card rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden border border-border animate-in zoom-in-95 fade-in duration-200">
+            <div className="flex justify-between items-center p-5 border-b border-border bg-muted/30">
+              <h3 className="text-xl font-bold text-foreground flex items-center gap-2">
+                <BookOpen className="w-5 h-5 text-primary" /> 
+                Course Enrollment
+              </h3>
+              <button 
+                onClick={() => setEnrollModalOpen(false)}
+                className="p-1 rounded-full hover:bg-muted transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-6 h-6 text-muted-foreground hover:text-foreground" />
+              </button>
+            </div>
+            
+            <form onSubmit={handleEnrollSubmit} className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">Course Title</label>
+                <Input 
+                  type="text" 
+                  value={selectedCourse} 
+                  disabled 
+                  className="bg-muted text-muted-foreground font-semibold border-border"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">Full Name</label>
+                <Input 
+                  type="text" 
+                  required
+                  placeholder="Enter your full name" 
+                  value={enrollForm.name} 
+                  onChange={(e) => setEnrollForm({ ...enrollForm, name: e.target.value })}
+                  className="bg-background text-foreground border-border"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">Email Address</label>
+                <Input 
+                  type="email" 
+                  required
+                  placeholder="Enter your email" 
+                  value={enrollForm.email} 
+                  onChange={(e) => setEnrollForm({ ...enrollForm, email: e.target.value })}
+                  className="bg-background text-foreground border-border"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">Comments / Goals (Optional)</label>
+                <textarea 
+                  placeholder="What do you hope to learn from this course?" 
+                  value={enrollForm.comments} 
+                  onChange={(e) => setEnrollForm({ ...enrollForm, comments: e.target.value })}
+                  className="w-full bg-background border border-border text-foreground text-sm rounded-lg p-2.5 outline-none focus:ring-1 focus:ring-primary h-24 resize-none"
+                />
+              </div>
+
+              <div className="pt-3 border-t border-border flex justify-end gap-2">
+                <Button 
+                  type="button"
+                  onClick={() => setEnrollModalOpen(false)}
+                  variant="outline"
+                  className="px-5"
+                >
+                  Cancel
+                </Button>
+                <Button 
+                  type="submit"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 shadow-sm hover:shadow-md transition-all animate-pulse-green"
+                >
+                  Complete Enrollment
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -31,18 +31,18 @@ export default function FAQ() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-24 pb-12 gradient-hero text-white text-center">
+        <section className="pt-32 pb-16 bg-slate-50 dark:bg-slate-900/50 text-center border-b border-border">
           <div className="container mx-auto px-4 max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm font-medium mb-4">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-medium mb-4">
               <HelpCircle className="w-3.5 h-3.5" /> Help Center
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4">Frequently Asked Questions</h1>
-            <p className="text-white/80 mb-8">Everything you need to know about NatureGyan.</p>
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-foreground">Frequently Asked Questions</h1>
+            <p className="text-muted-foreground mb-8">Everything you need to know about NatureGyan.</p>
             <div className="relative max-w-md mx-auto">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-white/50" />
+              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
               <Input
                 placeholder="Search questions..."
-                className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                className="pl-10 bg-background border-border text-foreground placeholder:text-muted-foreground"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
               />

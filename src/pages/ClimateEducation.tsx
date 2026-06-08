@@ -31,26 +31,23 @@ export default function ClimateEducation() {
       <Navbar />
       <main className="flex-1">
         {/* Section 1: Hero */}
-        <section className="relative pt-32 pb-20 overflow-hidden bg-slate-900 text-white">
-          <div className="absolute inset-0 opacity-40 mix-blend-overlay">
-            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80" alt="Climate" className="w-full h-full object-cover" />
-          </div>
+        <section className="relative pt-32 pb-20 overflow-hidden bg-background text-foreground border-b border-border">
           <div className="container mx-auto px-4 max-w-6xl relative z-10">
             <div className="flex flex-col md:flex-row items-center gap-12">
               <div className="md:w-1/2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white text-sm font-semibold mb-6 backdrop-blur-md">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-6">
                   <Globe2 className="w-4 h-4" /> Global Climate Initiative
                 </div>
-                <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight">
-                  Understand the Climate. <br/><span className="text-accent">Change the Future.</span>
+                <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight text-foreground">
+                  Understand the Climate. <br/><span className="text-primary">Change the Future.</span>
                 </h1>
-                <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-lg">
+                <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg">
                   Dive into data-driven climate science. Learn about the mechanics of global warming, carbon footprints, and actionable mitigation strategies.
                 </p>
                 <div className="flex gap-4">
                   <Button 
                     size="lg" 
-                    className="bg-accent hover:bg-accent/90 text-white h-12 px-8 rounded-full border-0"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground h-12 px-8 rounded-full border-0 shadow-md transition-all"
                     onClick={() => navigate(isAuthenticated ? '/dashboard' : '/login')}
                   >
                     Start Learning
@@ -58,20 +55,20 @@ export default function ClimateEducation() {
                 </div>
               </div>
               <div className="md:w-1/2">
-                <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-3xl">
-                  <h3 className="text-xl font-bold mb-4">Live Climate Tracker</h3>
+                <div className="bg-card border border-border p-8 rounded-3xl shadow-sm">
+                  <h3 className="text-xl font-bold mb-4 text-foreground">Live Climate Tracker</h3>
                   <div className="space-y-4">
-                    <div className="flex justify-between items-center border-b border-white/10 pb-2">
-                      <span className="text-slate-300">Global CO2 Level</span>
-                      <span className="font-bold text-accent">421 ppm</span>
+                    <div className="flex justify-between items-center border-b border-border pb-2">
+                      <span className="text-muted-foreground">Global CO2 Level</span>
+                      <span className="font-bold text-primary text-lg">421 ppm</span>
                     </div>
-                    <div className="flex justify-between items-center border-b border-white/10 pb-2">
-                      <span className="text-slate-300">Arctic Ice Minimum</span>
-                      <span className="font-bold text-accent">-12.6% per decade</span>
+                    <div className="flex justify-between items-center border-b border-border pb-2">
+                      <span className="text-muted-foreground">Arctic Ice Minimum</span>
+                      <span className="font-bold text-primary text-lg">-12.6% per decade</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-300">Forest Loss (2026)</span>
-                      <span className="font-bold text-red-400">4.2M hectares</span>
+                      <span className="text-muted-foreground">Forest Loss (2026)</span>
+                      <span className="font-bold text-red-500 text-lg">4.2M hectares</span>
                     </div>
                   </div>
                 </div>
@@ -92,12 +89,12 @@ export default function ClimateEducation() {
                 const Icon = m.icon;
                 return (
                   <div key={i} className="bg-card border border-border p-8 rounded-2xl text-left hover:shadow-xl transition-shadow group">
-                    <div className="w-14 h-14 bg-accent dark:bg-accent/30 text-accent rounded-xl flex items-center justify-center mb-6">
+                    <div className="w-14 h-14 bg-primary/10 dark:bg-primary/30 text-primary rounded-xl flex items-center justify-center mb-6">
                       <Icon className="w-7 h-7 group-hover:scale-110 transition-transform" />
                     </div>
                     <h3 className="text-xl font-bold text-foreground mb-3">{m.title}</h3>
                     <p className="text-muted-foreground mb-6">{m.desc}</p>
-                    <Link to={isAuthenticated ? '/dashboard' : '/login'} className="text-accent font-semibold flex items-center hover:text-accent transition-colors">
+                    <Link to={isAuthenticated ? '/dashboard' : '/login'} className="text-primary font-semibold flex items-center hover:text-primary transition-colors">
                       View Module <ArrowRight className="w-4 h-4 ml-2" />
                     </Link>
                   </div>
@@ -161,14 +158,14 @@ export default function ClimateEducation() {
         </section>
 
         {/* Section 5: CTA */}
-        <section className="py-24 bg-accent text-white text-center">
+        <section className="py-24 bg-primary text-white text-center">
           <div className="container mx-auto px-4 max-w-3xl">
-            <h2 className="text-4xl font-bold mb-6">Become a Climate Advocate</h2>
-            <p className="text-accent text-lg mb-10">
+            <h2 className="text-4xl font-bold mb-6 text-white">Become a Climate Advocate</h2>
+            <p className="text-emerald-100 text-lg mb-10">
               Access premium climate data, interactive models, and join a community of thousands dedicated to climate education.
             </p>
             <Link to={isAuthenticated ? '/dashboard' : '/login'}>
-              <Button size="lg" className="bg-background text-accent hover:bg-muted border border-accent/20 h-14 px-10 text-lg rounded-full font-bold shadow-xl">
+              <Button size="lg" className="bg-background text-primary hover:bg-muted border border-primary/20 h-14 px-10 text-lg rounded-full font-bold shadow-xl">
                 Create Free Account
               </Button>
             </Link>

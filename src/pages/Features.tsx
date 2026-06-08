@@ -61,16 +61,16 @@ export default function Features() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-24 pb-16 gradient-hero text-white text-center">
+        <section className="pt-32 pb-16 bg-slate-50 dark:bg-slate-900/50 text-center border-b border-border">
           <div className="container mx-auto px-4 lg:px-6 max-w-5xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-medium mb-6">
               <Leaf className="w-3.5 h-3.5" /> Platform Features
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
               Every tool to learn,{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-300">explore & protect</span>
+              <span className="text-primary dark:text-primary">explore & protect</span>
             </h1>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               From AI-powered species identification to certified courses and eco-impact tracking — NatureGyan brings everything together in one platform.
             </p>
           </div>
@@ -137,7 +137,7 @@ export default function Features() {
               ))}
             </div>
             <div className="text-center mt-10">
-              <Button className="gradient-primary text-white px-8" onClick={() => navigate('/register')}>
+              <Button className="gradient-primary text-white px-8" onClick={() => navigate('/biodiversity-courses')}>
                 Explore All 500+ Courses
               </Button>
             </div>

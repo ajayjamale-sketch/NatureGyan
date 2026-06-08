@@ -39,16 +39,16 @@ export default function About() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-24 pb-16 gradient-hero text-white">
+        <section className="pt-32 pb-16 bg-slate-50 dark:bg-slate-900/50 text-center border-b border-border">
           <div className="container mx-auto px-4 lg:px-6 max-w-7xl text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-medium mb-6">
               <Leaf className="w-3.5 h-3.5" /> Our Story
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
               Reconnecting humans with{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-300">the natural world</span>
+              <span className="text-primary dark:text-primary">the natural world</span>
             </h1>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Founded in 2020, NatureGyan was born from a simple belief: that meaningful environmental education can inspire a generation of informed, passionate, and effective conservationists.
             </p>
           </div>

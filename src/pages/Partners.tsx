@@ -57,13 +57,13 @@ export default function Partners() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-32 pb-16 gradient-hero text-white text-center">
+        <section className="pt-32 pb-16 bg-slate-50 dark:bg-slate-900/50 text-center border-b border-border">
           <div className="container mx-auto px-4 max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm font-medium mb-4">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-medium mb-4">
               <Users className="w-3.5 h-3.5" /> Partners
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Partner With Us</h1>
-            <p className="text-lg text-white/80 leading-relaxed">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Partner With Us</h1>
+            <p className="text-lg text-muted-foreground leading-relaxed">
               We collaborate with academic institutions, non-profits, and corporate entities to scale global environmental action and digital education.
             </p>
           </div>
